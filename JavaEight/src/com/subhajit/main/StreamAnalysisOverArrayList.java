@@ -1,11 +1,14 @@
 package com.subhajit.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -182,6 +185,18 @@ public class StreamAnalysisOverArrayList {
 		bigList.stream().parallel().forEachOrdered(valInt -> {
 			System.out.println("parallel forEachOrdered -> " + valInt);
 		});
+		
+		// peek(Consumer)
+		System.out.println("peek : " + stringList.stream().peek(val -> {
+			System.out.println("Peek testing -> Value is  : " + val);
+		}).collect(Collectors.toList()));
+		
+		//skip(long)
+		System.out.println("Skip : " + stringList.stream().skip(3).collect(Collectors.toList()));
+		
+		//reduce(BinaryOperator)
+		System.out.println("Reduce BinaryOperator " + stringList.stream().reduce((s1, s2) -> {return s1 + " - " + s2;}).get());
+		System.out.println("Reduce BinaryOperator " + stringList.stream().reduce("Start", (s1, s2) -> {return s1 + " - " + s2;}));
 
 		//------------------------------------ Stream Methods analysis ends here --------------------------------------------------
 		

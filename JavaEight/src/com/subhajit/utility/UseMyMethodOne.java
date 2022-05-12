@@ -13,5 +13,9 @@ public class UseMyMethodOne {
 	public int addM(int a, int b) {
 		return a+b;
 	}
+	
+	public void testMethodSignature(String arg) {
+		System.out.println("testMethodSignature");
+	}
 
 }

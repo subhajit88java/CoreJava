@@ -18,13 +18,13 @@ public class TestSystemDefinedFI {
 
 	public static void main(String[] args) {
 
-		testPredicate();
-		testBiPredicate();
-		testConsumer();
-		testBiConsumer();
-		testFunction();
-		testBiFunction();
-		testSupplier();
+		testPredicate();  // input 1, return 1(boolean), method=test()
+		testBiPredicate(); // inputs 2, return 1(boolean), method=test()
+		testConsumer(); // input 1, return none, method=accept()
+		testBiConsumer(); // inputs 2, return none, method=accept()
+		testFunction(); // input 1, return 1, method=apply()
+		testBiFunction(); // inputs 2, return 1, method=apply()
+		testSupplier(); // input none, return 1, method=get()
 		testUnaryOperator();
 		testBinaryOperator();
 	}
@@ -78,7 +78,6 @@ public class TestSystemDefinedFI {
 		BiPredicate<Student, String> biPredicate1 = (student,name) -> {return student.getName().equals(name);};
 			
 		System.out.println("biPredicate1 test() : " + biPredicate1.test(studentObj1, nameObj1));
-		
 	}
 	
 	private static void testConsumer() {
