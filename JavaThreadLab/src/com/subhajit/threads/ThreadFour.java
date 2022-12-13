@@ -1,22 +1,27 @@
 package com.subhajit.threads;
 
-import com.subhajit.models.ThreadTestBean;
+import com.subhajit.models.SharedBean;
 
 public class ThreadFour implements Runnable{
 	
-	private ThreadTestBean threadTestBean;
+	private SharedBean sharedBean;
 	
-	public ThreadFour(ThreadTestBean threadTestBean) {
-		this.threadTestBean = threadTestBean;
+	public ThreadFour(SharedBean sharedBean) {
+		this.sharedBean = sharedBean;
 	}
 
 	@Override
 	public void run() {
-		synchronized(threadTestBean) {
-			System.out.println("Received threadTestBean in ThreadFour : " + threadTestBean);
-			threadTestBean.setMessage("ThreadFour");
-			System.out.println("Modifying value of threadTestBean in ThreadFour : " + threadTestBean);
+		System.out.println("ThreadFour Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
+		synchronized(SharedBean.class) {
+			System.out.println("[synchronized] Received sharedBean in ThreadFour : " + sharedBean);
+			sharedBean.setMessage(sharedBean.getMessage() + " - " + "ThreadFour");
+			System.out.println("Modifying value of sharedBean in ThreadFour : " + sharedBean);
 		}
+		System.out.println("ThreadFour Ends..................");
 	}
 
 }

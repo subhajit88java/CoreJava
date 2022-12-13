@@ -3,7 +3,7 @@ package com.subhajit.main;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestThreahOfCommonClass {
+public class TestThreadOfCommonClass {
 	private static  boolean flag = false;
 	private static StringBuilder sb = new StringBuilder("A");
 	private static Boolean flag2 = false;

@@ -1,10 +1,10 @@
 package com.subhajit.models;
 
-public class ThreadTestBean {
+public class SharedBean {
 	
 	private String message;
 	
-	public ThreadTestBean(String message) {
+	public SharedBean(String message) {
 		this.message = message;
 	}
 
@@ -18,7 +18,7 @@ public class ThreadTestBean {
 
 	@Override
 	public String toString() {
-		return "ThreadTestBean [message=" + message + "]";
+		return "SharedBean [message=" + message + "]";
 	}
 
 }

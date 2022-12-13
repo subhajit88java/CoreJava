@@ -12,12 +12,15 @@ public class ThreadSeven implements Runnable {
 
 	@Override
 	public void run() {
-
+		System.out.println("ThreadSeven Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
 		synchronized (bankAccountBean) {
 			Integer localAmount = bankAccountBean.getAmount();
 			System.out.println("Received amt in ThreadSeven : " + localAmount);
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -25,8 +28,10 @@ public class ThreadSeven implements Runnable {
 			System.out.println("remainingAmount in ThreadSeven : " + remainingAmount);
 			bankAccountBean.setAmount(remainingAmount);
 			System.out.println("Withdrawing 300 in ThreadSeven : " + bankAccountBean);
-			bankAccountBean.notifyAll();
+//			System.out.println("ThreadSeven going to notify all..");
+//			bankAccountBean.notifyAll();
+//			System.out.println("ThreadSeven notified all..");
 		}
-
+		System.out.println("ThreadSeven Ends..................");
 	}
 }

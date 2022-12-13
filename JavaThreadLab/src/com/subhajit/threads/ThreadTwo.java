@@ -4,7 +4,10 @@ public class ThreadTwo implements Runnable{
 
 	@Override
 	public void run() {
-		
+		System.out.println("ThreadTwo Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
 		for(int i=0;i<50;i++) {
 			System.out.println("From ThreadTwo : " + i);
 			try {
@@ -13,7 +16,7 @@ public class ThreadTwo implements Runnable{
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("ThreadTwo Ends..................");
 	}
 
 }

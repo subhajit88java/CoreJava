@@ -1,7 +1,7 @@
 package com.subhajit.main;
 
 import com.subhajit.models.BankAccountBean;
-import com.subhajit.models.ThreadTestBean;
+import com.subhajit.models.SharedBean;
 import com.subhajit.threads.ThreadFive;
 import com.subhajit.threads.ThreadFour;
 import com.subhajit.threads.ThreadOne;
@@ -14,13 +14,16 @@ public class ThreadLabMain {
 
 	public static void main(String[] args) {
 		//runTwoThreads();
-		//runTwoThreadsWithObjectSharing();
-		runTwoThreadsWithBankAccountObject();
+		runTwoThreadsWithObjectSharing();
+		//runTwoThreadsWithBankAccountObject();
 	}
 
 	private static void runTwoThreads() {
 		
-		System.out.println("Main Thread Starts..................");
+		System.out.println("Main Thread Starts.................." + 
+		" Thread Id : " + Thread.currentThread().getId() + 
+		" Thread Name : " + Thread.currentThread().getName()
+		);
 		
 		ThreadOne threadOne = new ThreadOne();
 		ThreadTwo threadTwo = new ThreadTwo();
@@ -32,7 +35,7 @@ public class ThreadLabMain {
 		t2.start();
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -44,33 +47,82 @@ public class ThreadLabMain {
 
 	private static void runTwoThreadsWithObjectSharing() {
 		
-		System.out.println("Main Thread Starts..................");
+		//objectLevelSynchronizationTest();
+		classLevelSynchronizationTest();
+		//methodLevelSynchronizationTest();
+				
+	}
+	
+
+	private static void classLevelSynchronizationTest() {
 		
-		ThreadTestBean threadTestBean = new ThreadTestBean("Main");
+		System.out.println("Main Thread Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
 		
-		ThreadThree threadThree = new ThreadThree(threadTestBean);
-		ThreadFour threadFour = new ThreadFour(threadTestBean);
+		SharedBean sharedBean = new SharedBean("Main");
+		
+		ThreadThree threadThree = new ThreadThree(sharedBean);
+		ThreadFour threadFour = new ThreadFour(sharedBean);
 		
 		Thread t3 = new Thread(threadThree);
 		Thread t4 = new Thread(threadFour);
 		
 		t3.start();
-		t4.start();
-
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("threadTestBean in Main : " + threadTestBean);
-		System.out.println("Main Thread Ends..................");
+		t4.start();
 
+		System.out.println("sharedBean in Main : " + sharedBean);
+		
+		System.out.println("Main Thread Ends..................");
+		
 	}
-	
+
+	private static void methodLevelSynchronizationTest() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void objectLevelSynchronizationTest() {
+		
+		System.out.println("Main Thread Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
+		
+		SharedBean sharedBean = new SharedBean("Main");
+		
+		ThreadThree threadThree = new ThreadThree(sharedBean);
+		ThreadFour threadFour = new ThreadFour(sharedBean);
+		
+		Thread t3 = new Thread(threadThree);
+		Thread t4 = new Thread(threadFour);
+		
+		t3.start();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		t4.start();
+
+		System.out.println("sharedBean in Main : " + sharedBean);
+		
+		System.out.println("Main Thread Ends..................");
+		
+	}
 
 	private static void runTwoThreadsWithBankAccountObject() {
 		
-		System.out.println("Main Thread Starts..................");
+		System.out.println("Main Thread Starts.................." + 
+				" Thread Id : " + Thread.currentThread().getId() + 
+				" Thread Name : " + Thread.currentThread().getName()
+				);
 		
 		BankAccountBean bankAccountBean = new BankAccountBean(1000);
 		
@@ -86,11 +138,11 @@ public class ThreadLabMain {
 		t6.start();
 		t7.start();
 
-		try {
-			Thread.sleep(8000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(8000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		System.out.println("Amount remaining in Main : " + bankAccountBean);
 		System.out.println("Main Thread Ends..................");
