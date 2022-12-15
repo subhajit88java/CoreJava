@@ -1,4 +1,4 @@
-package com.subhajit.threads;
+package com.subhajit.threads.runnable;
 
 public class ThreadTwo implements Runnable{
 

@@ -3,9 +3,8 @@ package com.subhajit.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.subhajit.threads.SharedVolatilePrimitiveThreadOne;
-import com.subhajit.threads.SharedVolatilePrimitiveThreadTwo;
-
+import com.subhajit.threads.runnable.SharedVolatilePrimitiveThreadOne;
+import com.subhajit.threads.runnable.SharedVolatilePrimitiveThreadTwo;
 public class TestPrimitiveVolatileMain {
 
 	static int valueMain = 10;

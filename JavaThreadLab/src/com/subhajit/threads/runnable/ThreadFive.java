@@ -1,4 +1,4 @@
-package com.subhajit.threads;
+package com.subhajit.threads.runnable;
 
 import com.subhajit.models.BankAccountBean;
 
