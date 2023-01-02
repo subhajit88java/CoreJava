@@ -1,7 +1,13 @@
 package com.subhajit.main;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import com.subhajit.models.BankAccountBean;
 import com.subhajit.models.SharedBean;
+import com.subhajit.threads.runnable.ThreadEight;
 import com.subhajit.threads.runnable.ThreadFive;
 import com.subhajit.threads.runnable.ThreadFour;
 import com.subhajit.threads.runnable.ThreadOne;
@@ -14,42 +20,92 @@ public class RunnableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		threadExperimentWithoutPooling();
-		// threadExperimentWithPooling();
+		//threadExperimentWithoutPooling();
+		threadExperimentWithPooling();
 
 	}
 
 	private static void threadExperimentWithPooling() {
+		singleThreadPool();	
+		//multiThreadPool();	
+	}
+
+	private static void singleThreadPool() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		Runnable threadOne = new ThreadOne();
+		Runnable threadTwo = new ThreadTwo();
+		Runnable threadEight = new ThreadEight();
+		
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+		Future futureOne = executor.submit(threadOne);
+		Future futureTwo = executor.submit(threadTwo);
+		Future futureEight = executor.submit(threadEight);
+		
+		try {
+			System.out.println("futureOne : " + futureOne.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		
+//		executor.execute(threadOne);
+//		executor.execute(threadTwo);
+//		executor.execute(threadEight);
+		
+		System.out.println("Main Thread Ends..................");
+
+	}
+	
+	private static void multiThreadPool() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		Runnable threadOne = new ThreadOne();
+		Runnable threadTwo = new ThreadTwo();
+		Runnable threadEight = new ThreadEight();
+		
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+		executor.submit(threadOne);
+		executor.submit(threadTwo);
+		executor.submit(threadEight);
+		
+		System.out.println("Main Thread Ends..................");
 
 	}
 
 	private static void threadExperimentWithoutPooling() {
 
-		// runTwoThreads();
-		runTwoThreadsWithObjectSharing();
+		 runThreeThreads();
+		//runTwoThreadsWithObjectSharing();
 		// runTwoThreadsWithBankAccountObject();
 
 	}
 
-	private static void runTwoThreads() {
+	private static void runThreeThreads() {
 
 		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
 				+ " Thread Name : " + Thread.currentThread().getName());
 
-		ThreadOne threadOne = new ThreadOne();
-		ThreadTwo threadTwo = new ThreadTwo();
+		Runnable threadOne = new ThreadOne();
+		Runnable threadTwo = new ThreadTwo();
+		Runnable threadEight = new ThreadEight();
 
 		Thread t1 = new Thread(threadOne);
 		Thread t2 = new Thread(threadTwo);
+		Thread t8 = new Thread(threadEight);
 
 		t1.start();
 		t2.start();
+		t8.start();
 
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		System.out.println("Main Thread Ends..................");
 

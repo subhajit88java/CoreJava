@@ -8,10 +8,10 @@ public class ThreadOne implements Runnable{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		for(int i=0;i<50;i++) {
+		for(int i=0;i<5;i++) {
 			System.out.println("From ThreadOne : " + i);
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(8000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

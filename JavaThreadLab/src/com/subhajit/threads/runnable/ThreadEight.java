@@ -1,23 +1,22 @@
 package com.subhajit.threads.runnable;
 
-public class ThreadTwo implements Runnable{
+public class ThreadEight implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("ThreadTwo Starts.................." + 
+		System.out.println("ThreadEight Starts.................." + 
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		for(int i=0;i<5;i++) {
-			System.out.println("From ThreadTwo : " + i);
+		for(int i=0;i<10;i++) {
+			System.out.println("From ThreadEight : " + i);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("ThreadTwo Ends..................");
+		System.out.println("ThreadEight Ends..................");	
 	}
 
 }
-

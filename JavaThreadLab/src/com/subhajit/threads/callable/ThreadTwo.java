@@ -13,11 +13,11 @@ public class ThreadTwo implements Callable<Integer>{
 		int sum = 0;
 		for(int i=0;i<10;i=i+2) {
 			System.out.println("From ThreadTwo : " + i);
-//			try {
-//				Thread.sleep(5000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			sum = sum + i;
 		}
 		System.out.println("ThreadTwo Ends with sum : " + sum);	
