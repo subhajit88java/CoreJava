@@ -9,9 +9,9 @@ import com.subhajit.funtional.interfaces.FunctionalInterfaceTwo;
 public class TestFunctionalInterface {
 
 	public static void main(String[] args) {
+		
 		FunctionalInterfaceOne functionalInterfaceOne = () -> System.out.println("Hello World!!");
 		functionalInterfaceOne.testMethodOne();
-
 		
 		FunctionalInterfaceTwo functionalInterfaceTwo = (name) -> System.out.println("Hello " + name);
 		functionalInterfaceTwo.testMethodWithArgs("Subhajit");

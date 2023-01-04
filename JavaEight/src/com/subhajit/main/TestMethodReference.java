@@ -14,7 +14,6 @@ public class TestMethodReference {
 	public static void main(String[] args) {
 		MethodRefInterfaceOne methodRefInterfaceOne =  UseMyMethodOne::method1;
 		methodRefInterfaceOne.m1("Subhajit");
-
 				
 		MethodRefInterfaceTwo methodRefInterfaceTwo = UseMyMethodOne::method1;
 		methodRefInterfaceTwo.m2("Pallobi");
