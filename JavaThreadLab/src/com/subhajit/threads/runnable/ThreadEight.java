@@ -8,7 +8,7 @@ public class ThreadEight implements Runnable{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		for(int i=0;i<10;i++) {
+		for(int i=0;i<5;i++) {
 			System.out.println("From ThreadEight : " + i);
 			try {
 				Thread.sleep(2000);

@@ -15,6 +15,9 @@ public class ThreadOne implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			// Enable this to test exception
+			//String s = null;
+			//s.length();
 		}
 		System.out.println("ThreadOne Ends..................");	
 	}
