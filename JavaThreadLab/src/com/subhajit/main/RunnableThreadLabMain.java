@@ -188,8 +188,8 @@ public class RunnableThreadLabMain {
 
 	private static void runTwoThreadsWithObjectSharing() {
 
-		// objectLevelSynchronizationTest();
-		classLevelSynchronizationTest();
+		 objectLevelSynchronizationTest();
+		//classLevelSynchronizationTest();
 		// methodLevelSynchronizationTest();
 
 	}
