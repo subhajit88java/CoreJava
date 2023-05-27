@@ -14,7 +14,7 @@ public class ThreadThree implements Callable<Integer>{
 		for(int i=0;i<16;i=i+3) {
 			System.out.println("From ThreadThree : " + i);
 			try {
-				Thread.sleep(8000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

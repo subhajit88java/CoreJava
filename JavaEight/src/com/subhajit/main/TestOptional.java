@@ -20,11 +20,11 @@ public class TestOptional {
 	public static void main(String[] args) {
 
 		caseStudy1(); // Case study 1, with Optional.ofNullable(<value>) and null value
-		caseStudy2(); // Case study 2, with with Optional.ofNullable(<value>) and not-null value
-		caseStudy3(); // Case study 3, with Optional.of(<value>) and null value
-		caseStudy4(); // Case study 4, with Optional.of(<value>) and not-null value
-		caseStudy5(); // Case study 5, with Optional.empty()
-		caseStudy6(); // Case study 6, with non - null List
+		//caseStudy2(); // Case study 2, with with Optional.ofNullable(<value>) and not-null value
+		//caseStudy3(); // Case study 3, with Optional.of(<value>) and null value
+		//caseStudy4(); // Case study 4, with Optional.of(<value>) and not-null value
+		//caseStudy5(); // Case study 5, with Optional.empty()
+		//caseStudy6(); // Case study 6, with non - null List
 
 	}
 
@@ -174,7 +174,7 @@ public class TestOptional {
 			System.out.println("[Case study 6] List Size : " + n.size());
 		});
 		System.out.println("[Case study 6] stringListOptional.filter() : " + stringListOptional.filter(n -> {
-			return n.size() > 5;
+			return n.size() < 5;
 		}));
 		System.out.println("[Case study 6] stringListOptional.orElseGet() : " + stringListOptional.orElseGet(() -> {
 			if (stringListTwo.size() > 0)

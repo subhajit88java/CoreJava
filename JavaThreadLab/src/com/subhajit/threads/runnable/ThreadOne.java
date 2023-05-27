@@ -11,7 +11,7 @@ public class ThreadOne implements Runnable{
 		for(int i=0;i<5;i++) {
 			System.out.println("From ThreadOne : " + i);
 			try {
-				Thread.sleep(8000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -11,7 +11,7 @@ public class ThreadEight implements Runnable{
 		for(int i=0;i<5;i++) {
 			System.out.println("From ThreadEight : " + i);
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

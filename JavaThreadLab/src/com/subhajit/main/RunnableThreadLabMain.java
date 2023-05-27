@@ -23,15 +23,15 @@ public class RunnableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		//threadExperimentWithoutPooling();
+		// threadExperimentWithoutPooling();
 		threadExperimentWithPooling();
 
 	}
 
 	private static void threadExperimentWithPooling() {
-		//singleThreadPool();	
-		//multiThreadPool();	
-		//singleThreadPoolWithException();
+		// singleThreadPool();	
+		// multiThreadPool();	
+		// singleThreadPoolWithException();
 		multiThreadPoolWithExecutorCompletionService();
 	}
 
@@ -44,21 +44,21 @@ public class RunnableThreadLabMain {
 		Runnable threadEight = new ThreadEight();
 		
 		ExecutorService executor = Executors.newSingleThreadExecutor();
-		Future futureOne = executor.submit(threadOne);
-		Future futureTwo = executor.submit(threadTwo);
-		Future futureEight = executor.submit(threadEight);
+		executor.submit(threadOne);
+		executor.submit(threadTwo);
+		executor.submit(threadEight);
 		
-		try {
-			System.out.println("futureOne : " + futureOne.get());
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			System.out.println("futureOne : " + futureOne.get());
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//		}
 		
-//		executor.execute(threadOne);
-//		executor.execute(threadTwo);
-//		executor.execute(threadEight);
+		//executor.execute(threadOne);
+		//executor.execute(threadTwo);
+		//executor.execute(threadEight);
 		
 		System.out.println("Main Thread Ends..................");
 
@@ -135,17 +135,17 @@ public class RunnableThreadLabMain {
 		Runnable threadTwo = new ThreadTwo();
 		Runnable threadEight = new ThreadEight();
 		
-		ExecutorService executor = Executors.newFixedThreadPool(5);		
+		ExecutorService executor = Executors.newFixedThreadPool(2);		
 		Future futureOne = executor.submit(threadOne);
 		Future futureTwo = executor.submit(threadTwo);
 		Future futureEight = executor.submit(threadEight);
 				
-		try {	
-			System.out.println("futureOne : " + futureOne.get());
-			System.out.println("futureTwo : " + futureTwo.get());
-			System.out.println("futureEight : " + futureEight.get());
-					
-		} catch (Exception e) {} 
+//		try {	
+//			System.out.println("futureOne : " + futureOne.get());
+//			System.out.println("futureTwo : " + futureTwo.get());
+//			System.out.println("futureEight : " + futureEight.get());
+//					
+//		} catch (Exception e) {} 
 		
 		System.out.println("Main Thread Ends..................");
 
@@ -153,8 +153,8 @@ public class RunnableThreadLabMain {
 
 	private static void threadExperimentWithoutPooling() {
 
-		 runThreeThreads();
-		//runTwoThreadsWithObjectSharing();
+		// runThreeThreads();
+		// runTwoThreadsWithObjectSharing();
 		// runTwoThreadsWithBankAccountObject();
 
 	}
@@ -188,8 +188,8 @@ public class RunnableThreadLabMain {
 
 	private static void runTwoThreadsWithObjectSharing() {
 
-		 objectLevelSynchronizationTest();
-		//classLevelSynchronizationTest();
+		// objectLevelSynchronizationTest();
+		// classLevelSynchronizationTest();
 		// methodLevelSynchronizationTest();
 
 	}

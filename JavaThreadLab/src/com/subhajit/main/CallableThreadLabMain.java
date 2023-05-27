@@ -14,7 +14,7 @@ public class CallableThreadLabMain {
 
 	public static void main(String[] args) {
 		
-		//threadExperimentWithoutPooling();
+		threadExperimentWithoutPooling();
 		//threadExperimentWithPooling();		
 		
 	}
@@ -24,7 +24,7 @@ public class CallableThreadLabMain {
 	private static void threadExperimentWithoutPooling() {
 
 		try {
-		 runThreeThreads();
+		// runThreeThreads();
 		// runTwoThreadsWithObjectSharing();
 		// runTwoThreadsWithBankAccountObject();
 		}catch(Exception e) {
