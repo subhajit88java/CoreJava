@@ -14,7 +14,7 @@ public class ThreadTwo implements Callable<Integer>{
 		for(int i=0;i<10;i=i+2) {
 			System.out.println("From ThreadTwo : " + i);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(300);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -1,9 +1,6 @@
 package com.subhajit.main;
 
-import com.subhajit.threads.runnable.ThreadEight;
 import com.subhajit.threads.runnable.ThreadInterruptOne;
-import com.subhajit.threads.runnable.ThreadOne;
-import com.subhajit.threads.runnable.ThreadTwo;
 
 public class InterruptThreadMain {
 	
@@ -17,10 +14,10 @@ public class InterruptThreadMain {
 		t1.start();
 		try {
 			System.out.println("Main Thread going to sleep");
-			Thread.sleep(10000);
+			Thread.sleep(2000);
 			System.out.println("Main Thread sleep over");
 		}catch(Exception e) {}
-		t1.interrupt();
+		t1.interrupt(); // This method sets flag of the thread to true, which could be used later by the Thread code or the main thread code 
 		System.out.println("t1 interrupted");
 		
 		System.out.println("Main thread ends.....");

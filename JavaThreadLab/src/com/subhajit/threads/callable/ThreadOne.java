@@ -14,7 +14,7 @@ public class ThreadOne implements Callable<Integer>{
 		for(int i=0;i<5;i++) {
 			System.out.println("From ThreadOne : " + i);
 			try {
-				Thread.sleep(0);
+				Thread.sleep(400);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
