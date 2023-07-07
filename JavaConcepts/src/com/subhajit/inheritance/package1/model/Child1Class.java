@@ -13,7 +13,7 @@ public class Child1Class extends Parent1Class{
 	
 	@Override
 	public String getValues() {
-		super.getValues();
+		System.out.println(super.getValues());
 		System.out.println("Child1Class getValues");
 		System.out.println("super values : " + super.var2 + " - " + super.var3 + " - " + super.var4);
 		System.out.println("this values : " + this.var2 + " - " + this.var3 + " - " + this.var4);

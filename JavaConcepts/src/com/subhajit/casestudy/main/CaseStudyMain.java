@@ -9,21 +9,48 @@ import java.util.stream.Collectors;
 
 import com.subhajit.casestudy.model.Model1;
 import com.subhajit.casestudy.model.ObjectSupplierClass;
+import com.subhajit.casestudy.model.ThisConstructorModel;
 
 public class CaseStudyMain {
 
 	public static void main(String[] args) {
 		// 1. A list with repeated values. Output should be a map with 
 		// value as key and no. of occurrences as value
-		whatWillBeOutput1();
+		//whatWillBeOutput1();
 		
 		// Sort a map based on key
-		whatWillBeOutput2();
+		//whatWillBeOutput2();
 		
 		// Sort a map based on value
-		whatWillBeOutput3();
+		//whatWillBeOutput3();
+		
+		// String quiz
+		//whatWillBeOutput4();
+		
+		// Constructor quiz
+		whatWillBeOutput5();
 		
 		
+	}
+
+	private static void whatWillBeOutput5() {
+		ThisConstructorModel thisConstructorModel1 = new ThisConstructorModel(10);
+		thisConstructorModel1.print();
+		
+		ThisConstructorModel thisConstructorModel2 = new ThisConstructorModel(10,20);
+		thisConstructorModel2.print();
+		
+		ThisConstructorModel thisConstructorModel3 = new ThisConstructorModel(10, 20, 30);
+		thisConstructorModel3.print();
+	}
+
+	private static void whatWillBeOutput4() {
+		String a = "Hello";
+		String b = new String("Hello");
+		String c = "Hello";
+		String d = new String("Hello");
+		System.out.println((a==b) + " " + (a==c) + " " + (a==d)); // false true false
+		//System.out.println(a==b + " " + a==c + " " + a==d); // compile error
 	}
 
 	private static void whatWillBeOutput3() {
