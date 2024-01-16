@@ -27,6 +27,7 @@ public class TestMethodReference {
 		ConstructerFunctionalInterface constructerFunctionalInterface = UseMyMethodOne::new;
 		System.out.println(constructerFunctionalInterface.getObj());
 
+
 	}
 
 }

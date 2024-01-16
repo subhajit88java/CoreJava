@@ -25,7 +25,7 @@ public interface InterfaceTutorial {
 	}
 	
 	// Compilation error, as static methods should contain body in an interface
-	//static void abstractMethod1();
+	// static void abstractMethod1();
 	
 	// Compilation error, as default methods should contain body in an interface
 	//default void abstractMethod2();

@@ -32,7 +32,7 @@ public class TestSystemDefinedFI {
 
 
 	private static void testUnaryOperator() {
-		UnaryOperator<Integer> unaryOperator = UnaryOperator.identity();
+		UnaryOperator<Integer> unaryOperator = UnaryOperator.identity(); 
 		System.out.println("UnaryOperator identity : " + unaryOperator.apply(100));
 		
 	}
@@ -56,6 +56,8 @@ public class TestSystemDefinedFI {
 		Predicate<Student> predicate1 = student -> {
 			return student.getMarks() > 60;
 		};
+		
+		
 		System.out.println("predicate1 test() : " + predicate1.test(studentObj));
 		System.out.println("predicate1 negate() : " + predicate1.negate().test(studentObj));
 

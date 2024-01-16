@@ -1,8 +1,6 @@
 package com.subhajit.main;
 
-import java.util.List;
 import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,13 +8,24 @@ import java.util.concurrent.Future;
 
 import com.subhajit.models.BankAccountBean;
 import com.subhajit.models.SharedBean;
+import com.subhajit.models.SynchronizeMonitorOne;
+import com.subhajit.models.SynchronizeMonitorTwo;
+import com.subhajit.models.UtilityClassOne;
 import com.subhajit.threads.runnable.ThreadEight;
+import com.subhajit.threads.runnable.ThreadEleven;
+import com.subhajit.threads.runnable.ThreadFifteen;
 import com.subhajit.threads.runnable.ThreadFive;
 import com.subhajit.threads.runnable.ThreadFour;
+import com.subhajit.threads.runnable.ThreadFourteen;
+import com.subhajit.threads.runnable.ThreadNine;
 import com.subhajit.threads.runnable.ThreadOne;
 import com.subhajit.threads.runnable.ThreadSeven;
 import com.subhajit.threads.runnable.ThreadSix;
+import com.subhajit.threads.runnable.ThreadSixteen;
+import com.subhajit.threads.runnable.ThreadTen;
+import com.subhajit.threads.runnable.ThreadThirteen;
 import com.subhajit.threads.runnable.ThreadThree;
+import com.subhajit.threads.runnable.ThreadTwelve;
 import com.subhajit.threads.runnable.ThreadTwo;
 
 public class RunnableThreadLabMain {
@@ -32,7 +41,7 @@ public class RunnableThreadLabMain {
 		// singleThreadPool();	
 		// multiThreadPool();	
 		// singleThreadPoolWithException();
-		multiThreadPoolWithExecutorCompletionService();
+		 multiThreadPoolWithExecutorCompletionService();
 	}
 
 	private static void singleThreadPool() {
@@ -76,7 +85,7 @@ public class RunnableThreadLabMain {
 		String b = "threadTwo";
 		String c = "threadEight";
 		
-		ExecutorService executor = Executors.newFixedThreadPool(5);
+		ExecutorService executor = Executors.newFixedThreadPool(2);
 		CompletionService completionService = new ExecutorCompletionService<>(executor);
 		completionService.submit(threadOne, a);
 		completionService.submit(threadTwo, b);
@@ -86,7 +95,7 @@ public class RunnableThreadLabMain {
 			System.out.println("Rank 1 : " + completionService.take().get());
 			System.out.println("Rank 2 : " + completionService.take().get());
 			System.out.println("Rank 3 : " + completionService.take().get());	
-		} catch (Exception e) {} 
+		} catch (Exception e) {e.printStackTrace();} 
 		
 		
 //		executor.execute(threadOne);
@@ -116,7 +125,7 @@ public class RunnableThreadLabMain {
 			System.out.println("futureTwo : " + futureTwo.get());
 			System.out.println("futureEight : " + futureEight.get());
 			
-		} catch (Exception e) {} 
+		} catch (Exception e) {e.printStackTrace();} 
 		
 		
 //		executor.execute(threadOne);
@@ -154,7 +163,7 @@ public class RunnableThreadLabMain {
 	private static void threadExperimentWithoutPooling() {
 
 		// runThreeThreads();
-		// runTwoThreadsWithObjectSharing();
+		 runTwoThreadsWithObjectSharing();
 		// runTwoThreadsWithBankAccountObject();
 
 	}
@@ -188,17 +197,20 @@ public class RunnableThreadLabMain {
 
 	private static void runTwoThreadsWithObjectSharing() {
 
-		// objectLevelSynchronizationTest();
-		// classLevelSynchronizationTest();
-		// methodLevelSynchronizationTest();
+		// objectLevelSynchronizationTestOne();
+		// objectLevelSynchronizationTestTwo();
+		// classLevelSynchronizationTestOne();
+		// classLevelSynchronizationTestTwo();
+		 methodLevelSynchronizationTest();
 
 	}
 
-	private static void classLevelSynchronizationTest() {
+	private static void classLevelSynchronizationTestOne() {
 
 		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
 				+ " Thread Name : " + Thread.currentThread().getName());
 
+		// Shared bean is used to prove that data is getting updated in isolation
 		SharedBean sharedBean = new SharedBean("Main");
 
 		ThreadThree threadThree = new ThreadThree(sharedBean);
@@ -208,11 +220,6 @@ public class RunnableThreadLabMain {
 		Thread t4 = new Thread(threadFour);
 
 		t3.start();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		t4.start();
 
 		System.out.println("sharedBean in Main : " + sharedBean);
@@ -220,34 +227,84 @@ public class RunnableThreadLabMain {
 		System.out.println("Main Thread Ends..................");
 
 	}
-
-	private static void methodLevelSynchronizationTest() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private static void objectLevelSynchronizationTest() {
+	
+	private static void classLevelSynchronizationTestTwo() {
 
 		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
 				+ " Thread Name : " + Thread.currentThread().getName());
 
-		SharedBean sharedBean = new SharedBean("Main");
+		ThreadNine threadNine = new ThreadNine();
+		ThreadTen threadTen = new ThreadTen();
 
-		ThreadThree threadThree = new ThreadThree(sharedBean);
-		ThreadFour threadFour = new ThreadFour(sharedBean);
+		Thread t9 = new Thread(threadNine);
+		Thread t10 = new Thread(threadTen);
 
-		Thread t3 = new Thread(threadThree);
-		Thread t4 = new Thread(threadFour);
+		t9.start();
+		t10.start();
 
-		t3.start();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		t4.start();
+		System.out.println("Main Thread Ends..................");
 
-		System.out.println("sharedBean in Main : " + sharedBean);
+	}
+
+	private static void methodLevelSynchronizationTest() {
+		
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		UtilityClassOne utilityClassOne = new UtilityClassOne();
+		UtilityClassOne utilityClassDuplicate = new UtilityClassOne();
+	
+		ThreadFifteen threadFifteen = new ThreadFifteen(utilityClassOne);
+		ThreadSixteen threadSixteen = new ThreadSixteen(utilityClassDuplicate);
+
+		Thread t15 = new Thread(threadFifteen);
+		Thread t16 = new Thread(threadSixteen);
+
+		t15.start();
+		t16.start();
+
+		System.out.println("Main Thread Ends..................");
+
+	}
+
+	private static void objectLevelSynchronizationTestOne() {
+
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		SynchronizeMonitorOne synchronizeMonitorOne = new SynchronizeMonitorOne();
+		SynchronizeMonitorOne synchronizeMonitorTwo = new SynchronizeMonitorOne();
+
+		ThreadEleven threadEleven = new ThreadEleven(synchronizeMonitorOne);
+		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorTwo);
+
+		Thread t11 = new Thread(threadEleven);
+		Thread t12 = new Thread(threadTwelve);
+
+		t11.start();
+		t12.start();
+
+		System.out.println("Main Thread Ends..................");
+
+	}
+	
+	private static void objectLevelSynchronizationTestTwo() {
+
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+		
+		SynchronizeMonitorTwo synchronizeMonitorTwo = new SynchronizeMonitorTwo();
+		SynchronizeMonitorTwo synchronizeMonitorDuplicate = new SynchronizeMonitorTwo();
+
+
+		ThreadThirteen threadThirteen = new ThreadThirteen(synchronizeMonitorTwo);
+		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorDuplicate);
+
+		Thread t13 = new Thread(threadThirteen);
+		Thread t14 = new Thread(threadFourteen);
+
+		t13.start();
+		t14.start();
 
 		System.out.println("Main Thread Ends..................");
 

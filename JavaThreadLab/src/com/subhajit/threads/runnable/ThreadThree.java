@@ -1,6 +1,7 @@
 package com.subhajit.threads.runnable;
 
 import com.subhajit.models.SharedBean;
+import com.subhajit.models.SynchronizeMonitorOne;
 
 public class ThreadThree implements Runnable{
 	
@@ -16,10 +17,16 @@ public class ThreadThree implements Runnable{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		synchronized(SharedBean.class) {
+		// Class level synchronization means : keeping the same class as MONITOR in multiple locations/classes, 
+		// until and unless the block of a particular location is completed
+		// no other blocks will get executed by other threads 
+		synchronized(SynchronizeMonitorOne.class) {
 			System.out.println("[synchronized] Received sharedBean in ThreadThree : " + sharedBean);
 			try {
-				Thread.sleep(10000);
+				for(int i = 1; i<=10; i ++) {
+					System.out.println("ThreadThree => " + i);
+					Thread.sleep(2000);
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
