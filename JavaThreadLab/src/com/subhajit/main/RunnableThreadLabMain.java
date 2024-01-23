@@ -32,7 +32,7 @@ public class RunnableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		// threadExperimentWithoutPooling();
+		threadExperimentWithoutPooling();
 		threadExperimentWithPooling();
 
 	}
@@ -162,8 +162,8 @@ public class RunnableThreadLabMain {
 
 	private static void threadExperimentWithoutPooling() {
 
-		// runThreeThreads();
-		 runTwoThreadsWithObjectSharing();
+		 runThreeThreads();
+		// runTwoThreadsWithObjectSharing();
 		// runTwoThreadsWithBankAccountObject();
 
 	}

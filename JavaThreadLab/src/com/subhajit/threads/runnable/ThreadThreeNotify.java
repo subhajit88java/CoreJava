@@ -22,7 +22,8 @@ public class ThreadThreeNotify implements Runnable {
 				Thread.sleep(10000);
 			} catch (Exception e) {
 			}
-			sharedBean.notifyAll();
+			//sharedBean.notifyAll(); // will activate all waiting threads
+			sharedBean.notify(); // will invoke only one waiting thread in adhoc manner
 			System.out.println("ThreadThreeNotify notified all.....");
 
 		}

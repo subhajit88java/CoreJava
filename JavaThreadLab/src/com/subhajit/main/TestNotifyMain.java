@@ -32,6 +32,7 @@ public class TestNotifyMain {
 			Thread.sleep(10000);
 		} catch (Exception e) {
 		}
+		// sharedBean.notifyAll(); //java.lang.IllegalMonitorStateException
 		System.out.println("Main thread sleep over");
 
 		t3.start();

@@ -19,14 +19,15 @@ public class ThreadOneThreadLocalImpl implements Runnable{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		
-		System.out.println("Setting threadlocal 1 value");
+		System.out.println("SharedBean received in ThreadOneThreadLocalImpl : " + threadLocalObj.get());
 		threadLocalObj.set(new SharedBean("ThreadOneThreadLocalImpl"));
+		System.out.println("SharedBean value has been set in ThreadOneThreadLocalImpl");
 		try {
 			Thread.sleep(20000);
 		}catch(Exception e) {}
-		System.out.println("Getting threadlocal 1 value : " + threadLocalObj.get());
+		System.out.println("Getting SharedBean value in ThreadOneThreadLocalImpl : " + threadLocalObj.get());
 		
-		System.out.println("Thread local 1 obj : " + threadLocalObj.toString());
+		System.out.println("threadLocalObj in ThreadOneThreadLocalImpl : " + threadLocalObj.toString());
 		System.out.println("ThreadOneThreadLocalImpl ends.......");
 		
 	}

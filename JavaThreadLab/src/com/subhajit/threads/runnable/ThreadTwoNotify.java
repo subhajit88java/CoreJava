@@ -23,7 +23,7 @@ public class ThreadTwoNotify implements Runnable {
 			} catch (InterruptedException e) {
 			}
 			System.out.println("ThreadTwoNotify wait is over.....");
-			// sharedBean.notify();
+			sharedBean.notify(); // If this thread is activated by ThreadThreeNotify in adhoc manner then this line of code will activate the other thread waiting
 		}
 		System.out.println("ThreadTwoNotify Ends..................");
 	}

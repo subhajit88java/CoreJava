@@ -11,7 +11,7 @@ public class ThreadThree implements Callable<Integer>{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		int sum = 0;
-		for(int i=0;i<16;i=i+3) {
+		for(int i=0;i<60;i=i+3) {
 			System.out.println("From ThreadThree : " + i);
 			try {
 				Thread.sleep(500);

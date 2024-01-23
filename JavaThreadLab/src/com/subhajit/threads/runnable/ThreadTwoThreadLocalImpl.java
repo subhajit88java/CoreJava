@@ -18,11 +18,13 @@ public class ThreadTwoThreadLocalImpl implements Runnable{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		
-		System.out.println("Setting threadlocal 2 value");
+		System.out.println("SharedBean received in ThreadTwoThreadLocalImpl : " + threadLocalObj.get());
 		threadLocalObj.set(new SharedBean("ThreadTwoThreadLocalImpl"));
-		System.out.println("Getting threadlocal 2 value : " + threadLocalObj.get());
+		System.out.println("SharedBean value has been set in ThreadTwoThreadLocalImpl");
 		
-		System.out.println("Thread local 2 obj : " + threadLocalObj.toString());
+		System.out.println("Getting SharedBean value in ThreadTwoThreadLocalImpl : " + threadLocalObj.get());
+		
+		System.out.println("threadLocalObj in ThreadTwoThreadLocalImpl : " + threadLocalObj.toString());
 		System.out.println("ThreadTwoThreadLocalImpl ends.......");
 		
 	}
