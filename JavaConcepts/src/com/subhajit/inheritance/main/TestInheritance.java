@@ -12,8 +12,8 @@ public class TestInheritance {
 	public static void main(String[] args) {
 		
 		//method1();
-		//method2();
-		method3();
+		method2();
+		//method3();
 		
 		
 	}

@@ -8,7 +8,7 @@ public class Child1Class extends Parent1Class{
 	
 	public Child1Class(String var1, String var2, String var3, String var4) {
 		super(var1, var2, var3, var4);
-		System.out.println("Parent1Class parameterised constructor");
+		System.out.println("Child1Class parameterised constructor");
 	}
 	
 	@Override

@@ -14,9 +14,10 @@ public class Thread1 implements Runnable {
 				+ " Thread Name : " + Thread.currentThread().getName());
 
 		int i = sharedModel1.i;
+		System.out.println("sharedModel1 i received in Thread1 : " + i);
 		while(i < 20) {
-			System.out.println("sharedModel1 i incremented in Thread1 : " + i);
 			sharedModel1.i  = ++i;
+			System.out.println("sharedModel1 i incremented in Thread1 : " + sharedModel1.i);
 			try {
 				Thread.sleep(500);
 			} catch (Exception e) {

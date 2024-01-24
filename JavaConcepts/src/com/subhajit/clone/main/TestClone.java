@@ -3,6 +3,7 @@ package com.subhajit.clone.main;
 import java.util.Arrays;
 
 import com.subhajit.clone.model.Employee;
+import com.subhajit.clone.model.EmployeeAddress;
 
 public class TestClone {
 
@@ -13,10 +14,14 @@ public class TestClone {
 
 	private static void deepClone() throws CloneNotSupportedException {
 		Employee original = new Employee();
-		original.setId(1);
+		original.setId(150);
 		original.setSalary(10000L);
 		original.setName("Subhajit");
 		original.setSkills(Arrays.asList("Java", "Database", "Openshift"));
+		EmployeeAddress employeeAddressOriginal = new EmployeeAddress();
+		employeeAddressOriginal.setAddress("Durgapur");
+		
+		original.setEmployeeAddress(employeeAddressOriginal);
 		
 		System.out.println("original employee : " + original);
 		System.out.println("original employee address : " + System.identityHashCode(original));
@@ -24,6 +29,8 @@ public class TestClone {
 		System.out.println("original employee salary address : " + System.identityHashCode(original.getSalary()));
 		System.out.println("original employee name address : " + System.identityHashCode(original.getName()));
 		System.out.println("original employee skills address : " + System.identityHashCode(original.getSkills()));
+		System.out.println("original employee employeeAddress address : " + System.identityHashCode(original.getEmployeeAddress()));
+		System.out.println("original employee employeeAddress(address) address : " + System.identityHashCode(original.getEmployeeAddress().getAddress()));
 		System.out.println("-----------------------------------------------------");
 		Employee clone = (Employee) original.clone();
 		System.out.println("clone employee : " + clone);
@@ -32,15 +39,21 @@ public class TestClone {
 		System.out.println("clone employee salary address : " + System.identityHashCode(clone.getSalary()));
 		System.out.println("clone employee name address : " + System.identityHashCode(clone.getName()));
 		System.out.println("clone employee skills address : " + System.identityHashCode(clone.getSkills()));
-
+		System.out.println("clone employee employeeAddress address : " + System.identityHashCode(clone.getEmployeeAddress()));
+		System.out.println("clone employee employeeAddress(address) address : " + System.identityHashCode(clone.getEmployeeAddress().getAddress()));
 	}
 
 	private static void shallowClone() throws CloneNotSupportedException {
 		Employee original = new Employee();
 		original.setId(1);
 		original.setSalary(10000L);
-		original.setName("SUbhajit");
+		original.setName("Subhajit");
 		original.setSkills(Arrays.asList("Java", "Database", "Openshift"));
+		
+		EmployeeAddress employeeAddressOriginal = new EmployeeAddress();
+		employeeAddressOriginal.setAddress("Durgapur");
+		
+		original.setEmployeeAddress(employeeAddressOriginal);
 		
 		System.out.println("original employee : " + original);
 		System.out.println("original employee address : " + System.identityHashCode(original));
@@ -48,6 +61,8 @@ public class TestClone {
 		System.out.println("original employee salary address : " + System.identityHashCode(original.getSalary()));
 		System.out.println("original employee name address : " + System.identityHashCode(original.getName()));
 		System.out.println("original employee skills address : " + System.identityHashCode(original.getSkills()));
+		System.out.println("original employee employeeAddress address : " + System.identityHashCode(original.getEmployeeAddress()));
+		System.out.println("original employee employeeAddress(address) address : " + System.identityHashCode(original.getEmployeeAddress().getAddress()));
 		System.out.println("-----------------------------------------------------");
 		Employee clone = (Employee) original.clone();
 		System.out.println("clone employee : " + clone);
@@ -56,6 +71,7 @@ public class TestClone {
 		System.out.println("clone employee salary address : " + System.identityHashCode(clone.getSalary()));
 		System.out.println("clone employee name address : " + System.identityHashCode(clone.getName()));
 		System.out.println("clone employee skills address : " + System.identityHashCode(clone.getSkills()));
-
+		System.out.println("clone employee employeeAddress address : " + System.identityHashCode(clone.getEmployeeAddress()));
+		System.out.println("clone employee employeeAddress(address) address : " + System.identityHashCode(clone.getEmployeeAddress().getAddress()));
 	}
 }

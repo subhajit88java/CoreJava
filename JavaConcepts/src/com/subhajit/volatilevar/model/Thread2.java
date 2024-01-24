@@ -14,6 +14,7 @@ public class Thread2 implements Runnable {
 				+ " Thread Name : " + Thread.currentThread().getName());
 
 		int i = sharedModel1.i;
+		System.out.println("sharedModel1 i received in Thread2 : " + i);
 		while (i < 20) {
 			if (i != sharedModel1.i) {
 				System.out.println("sharedModel1 change detected in Thread2 : " + sharedModel1.i);
