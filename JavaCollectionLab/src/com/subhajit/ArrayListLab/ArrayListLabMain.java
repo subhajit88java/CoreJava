@@ -17,7 +17,7 @@ public class ArrayListLabMain {
 		//testCreate();
 		//testUpdate();
 		//testDelete();
-		//testRead();
+		testRead();
 		// testOtherMethods();
 		// testStream();
 		// testThread();
@@ -113,12 +113,10 @@ public class ArrayListLabMain {
 		System.out.println("stringList : " + stringList);
 		System.out.println("stringList.IsEmpty() : " + stringList.isEmpty());
 
-		/*
-		 * stringList.clear();
-		 * 
-		 * System.out.println("Size : " + stringList.size());
-		 * System.out.println("stringList : " + stringList);
-		 */
+		stringList.clear();
+
+		System.out.println("Size : " + stringList.size());
+		System.out.println("stringList : " + stringList);
 
 		// System.out.println("stringList.contains() : " + stringList.contains("M"));
 

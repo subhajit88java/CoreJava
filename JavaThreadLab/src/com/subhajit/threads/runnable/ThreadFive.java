@@ -16,7 +16,7 @@ public class ThreadFive implements Runnable {
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		synchronized (bankAccountBean) {
+		//synchronized (bankAccountBean) {
 			Integer localAmount = bankAccountBean.getAmount();
 			System.out.println("Received amt in ThreadFive : " + localAmount);
 			try {
@@ -38,7 +38,7 @@ public class ThreadFive implements Runnable {
 			bankAccountBean.setAmount(remainingAmount);
 			System.out.println("Withdrawing 100 in ThreadFive : " + bankAccountBean);
 			System.out.println("ThreadFive Ends..................");
-		}
+		//}
 
 	}
 }

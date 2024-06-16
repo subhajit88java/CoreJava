@@ -10,6 +10,6 @@ public interface PlainInterfaceTwo {
 
 		public void getName();
 		String testMethodSignature1();
-		void testMethodSignature2(String name);
+		String testMethodSignature2(String name);
 	
 }

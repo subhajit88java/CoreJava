@@ -30,12 +30,13 @@ public class ArrayListRLab {
 			for (String s : stringList) {
 				System.out.println("Data : " + s);
 				// stringList.add("Concurrent add");
-				// stringList.set(3, "Concurrent edit");
-				// stringList.remove(3);
+				 //stringList.set(3, "Concurrent edit");
+				 //stringList.remove(3);
 			}
 
 			System.out.println("stringList : " + stringList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");
@@ -68,7 +69,7 @@ public class ArrayListRLab {
 				// stringList.add("Concurrent add");
 				// stringList.add(9, "Concurrent add");
 				// stringList.set(3, "Concurrent edit");
-				// stringList.remove(3);
+				 stringList.remove(3);
 			}
 
 			System.out.println("stringList : " + stringList);
@@ -114,6 +115,7 @@ public class ArrayListRLab {
 
 			System.out.println("stringList : " + stringList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");
@@ -153,6 +155,7 @@ public class ArrayListRLab {
 
 			System.out.println("stringList : " + stringList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");
@@ -184,7 +187,7 @@ public class ArrayListRLab {
 
 			while (litr.hasNext()) {
 				System.out.println("Data : " + litr.next());
-				// stringList.add("Concurrent add");
+				 stringList.add("Concurrent add");
 				// stringList.set(3, "Concurrent edit");
 				// stringList.remove(3);
 				// litr.remove();
@@ -192,6 +195,7 @@ public class ArrayListRLab {
 
 			System.out.println("stringList : " + stringList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");
@@ -224,11 +228,12 @@ public class ArrayListRLab {
 				System.out.println("Data : " + val);
 				// stringList.add("Concurrent add");
 				// stringList.set(3, "Concurrent edit");
-				// stringList.remove(3);
+				 stringList.remove(3);
 			});
 
 			System.out.println("stringList : " + stringList);
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");

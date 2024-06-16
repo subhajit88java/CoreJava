@@ -82,7 +82,7 @@ public class StreamAnalysis {
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
-		// Ascending order sorting using fixed Comparable logic
+		// Descending order sorting using fixed Comparable logic
 		// Comparable must be implemented by the object in comparison while calling Comparator.reverseOrder()
 		// Reverse Order means, the sorting will be exactly the reverse of the logic written in CompareTo method after implementing Comparable interface
 		System.out.println("Reverse Order based on marks : " + teacherStream.sorted(Comparator.reverseOrder()).collect(Collectors.toList()));

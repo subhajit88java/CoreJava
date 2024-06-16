@@ -30,4 +30,20 @@ public class ImplementInterfaceTutorial implements InterfaceTutorial, InterfaceT
 		return "getStaticName overriden in impl class";
 	}
 
+	@Override
+	public Integer getId(Integer Id) {
+		return 100;
+	}
+
+	@Override
+	public Integer getId() {
+		return 200;
+	}
+
+	// Compilation issue due to ambiguity of the return type
+	/*@Override
+	public void getCity() {
+		// TODO Auto-generated method stub
+	}*/
+
 }

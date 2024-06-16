@@ -11,10 +11,10 @@ import com.subhajit.immutable.model.BreakImmutableTwo;
 public class TestImmutable {
 
 	public static void main(String[] args) {
-		breakImmutableOne();
-		//breakImmutableTwo();
+		//breakImmutableOne();
+		breakImmutableTwo();
 		//breakImmutableThree();
-		breakImmutableFour();
+		//breakImmutableFour();
 	}
 
 	private static void breakImmutableOne() {
@@ -134,7 +134,7 @@ public class TestImmutable {
 		// This is "SEEMINGLY" breaking of immutability of BreakImmutableThree. Not real.
 		// One can sabotage the code by passing the BreakImmutableThreeChild and letting the BreakImmutableThreeChild's version of listOfString to be modified
 		
-		// To resolve this, BreakImmutableThreeChild should be made as final to avoid inheritance
+		// To resolve this, BreakImmutableThree should be made as final to avoid inheritance
 	}
 	
 }

@@ -10,10 +10,10 @@ import com.subhajit.models.MiniModel;
 public class CollectionsLab {
 
 	public static void main(String[] args) {
-		//synchronizedList();
+		//synchronizedList(); // need research in depth
 		//singletonList();
 		//unmodifiableList();
-		//arraysAsList();
+		arraysAsList();
 		//frequency();
 	}
 
@@ -27,7 +27,7 @@ public class CollectionsLab {
 		list.add("B");
 		list.add("C");
 
-		int times = Collections.frequency(list, "D");
+		int times = Collections.frequency(list, "A");
 		System.out.println("Times : " + times);
 		
 	}
@@ -52,7 +52,7 @@ public class CollectionsLab {
 		System.out.println("unmodifiableList : " + unmodifiableList);
 		System.out.println("unmodifiableList address : " + System.identityHashCode(unmodifiableList));
 		
-		//unmodifiableList.add("F");
+		//unmodifiableList.add("F"); // Will throw UnsupportedOperationException
 		//System.out.println("unmodifiableList : " + unmodifiableList);
 		//System.out.println("unmodifiableList address : " + System.identityHashCode(unmodifiableList));
 		
@@ -74,6 +74,7 @@ public class CollectionsLab {
 	private static void singletonList() {
 		
 		List<String> testList1 = Collections.singletonList("A");
+		testList1.add("B"); // Will throw UnsupportedOperationException
 		System.out.println("testList1 : " + testList1);
 		System.out.println("testList1 address : " + System.identityHashCode(testList1));
 		
@@ -85,6 +86,7 @@ public class CollectionsLab {
 		miniModel.setName("Value 2");
 		System.out.println("testList2 : " + testList2);
 		System.out.println("testList2 address : " + System.identityHashCode(testList2));
+		
 	}
 
 	private static void synchronizedList() {
@@ -95,6 +97,11 @@ public class CollectionsLab {
 		list.add("D");
 		list.add("E");
 		Collections.synchronizedList(list);
+		
+		for(String s : list) {
+			System.out.println("S before edit --> " + s);
+			list.add("F");
+		}
 		
 	}
 }

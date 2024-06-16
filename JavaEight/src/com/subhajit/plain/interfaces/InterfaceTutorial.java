@@ -15,6 +15,10 @@ package com.subhajit.plain.interfaces;
 public interface InterfaceTutorial {
 
 	String getName(String name); //public and abstract
+	Integer getId(); //public and abstract
+	
+	// Will cause compilation issue once implemented by a class due to ambiguity of the return type in InterfaceTutorialTwo
+	//void getCity(); //public and abstract
 	
 	static String getStaticName(String name) { // public and static
 		return "Static method InterfaceTutorial";

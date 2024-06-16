@@ -16,7 +16,7 @@ public class ThreadSeven implements Runnable {
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		synchronized (bankAccountBean) {
+		//synchronized (bankAccountBean) {
 			Integer localAmount = bankAccountBean.getAmount();
 			System.out.println("Received amt in ThreadSeven : " + localAmount);
 			try {
@@ -31,7 +31,7 @@ public class ThreadSeven implements Runnable {
 //			System.out.println("ThreadSeven going to notify all..");
 //			bankAccountBean.notifyAll();
 //			System.out.println("ThreadSeven notified all..");
-		}
+		//}
 		System.out.println("ThreadSeven Ends..................");
 	}
 }

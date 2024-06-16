@@ -33,7 +33,7 @@ public class RunnableThreadLabMain {
 	public static void main(String[] args) {
 
 		threadExperimentWithoutPooling();
-		threadExperimentWithPooling();
+		//threadExperimentWithPooling();
 
 	}
 
@@ -163,8 +163,8 @@ public class RunnableThreadLabMain {
 	private static void threadExperimentWithoutPooling() {
 
 		 runThreeThreads();
-		// runTwoThreadsWithObjectSharing();
-		// runTwoThreadsWithBankAccountObject();
+		 //runTwoThreadsWithObjectSharing();
+		 runTwoThreadsWithBankAccountObject();
 
 	}
 
@@ -199,9 +199,9 @@ public class RunnableThreadLabMain {
 
 		// objectLevelSynchronizationTestOne();
 		// objectLevelSynchronizationTestTwo();
-		// classLevelSynchronizationTestOne();
+		 classLevelSynchronizationTestOne();
 		// classLevelSynchronizationTestTwo();
-		 methodLevelSynchronizationTest();
+		// methodLevelSynchronizationTest();
 
 	}
 
@@ -211,7 +211,7 @@ public class RunnableThreadLabMain {
 				+ " Thread Name : " + Thread.currentThread().getName());
 
 		// Shared bean is used to prove that data is getting updated in isolation
-		SharedBean sharedBean = new SharedBean("Main");
+		SharedBean sharedBean = new SharedBean("100");
 
 		ThreadThree threadThree = new ThreadThree(sharedBean);
 		ThreadFour threadFour = new ThreadFour(sharedBean);
@@ -276,7 +276,7 @@ public class RunnableThreadLabMain {
 		SynchronizeMonitorOne synchronizeMonitorTwo = new SynchronizeMonitorOne();
 
 		ThreadEleven threadEleven = new ThreadEleven(synchronizeMonitorOne);
-		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorTwo);
+		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorOne);
 
 		Thread t11 = new Thread(threadEleven);
 		Thread t12 = new Thread(threadTwelve);
@@ -298,7 +298,7 @@ public class RunnableThreadLabMain {
 
 
 		ThreadThirteen threadThirteen = new ThreadThirteen(synchronizeMonitorTwo);
-		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorDuplicate);
+		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorTwo);
 
 		Thread t13 = new Thread(threadThirteen);
 		Thread t14 = new Thread(threadFourteen);

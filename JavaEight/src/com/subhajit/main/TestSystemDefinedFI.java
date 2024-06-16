@@ -18,15 +18,15 @@ public class TestSystemDefinedFI {
 
 	public static void main(String[] args) {
 
-		testPredicate();  // input 1, return 1(boolean), method=test()
-		testBiPredicate(); // inputs 2, return 1(boolean), method=test()
-		testConsumer(); // input 1, return none, method=accept()
-		testBiConsumer(); // inputs 2, return none, method=accept()
-		testFunction(); // input 1, return 1, method=apply()
-		testBiFunction(); // inputs 2, return 1, method=apply()
-		testSupplier(); // input none, return 1, method=get()
-		testUnaryOperator();
-		testBinaryOperator();
+		//testPredicate();  // input 1, return 1(boolean), method=test()
+		//testBiPredicate(); // inputs 2, return 1(boolean), method=test()
+		//testConsumer(); // input 1, return none, method=accept()
+		//testBiConsumer(); // inputs 2, return none, method=accept()
+		//testFunction(); // input 1, return 1, method=apply()
+		//testBiFunction(); // inputs 2, return 1, method=apply()
+		//testSupplier(); // input none, return 1, method=get()
+		//testUnaryOperator();
+		//testBinaryOperator();
 	}
 
 

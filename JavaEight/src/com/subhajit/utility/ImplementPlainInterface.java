@@ -27,13 +27,13 @@ public class ImplementPlainInterface implements PlainInterface, PlainInterfaceTw
 	// will cause compilation error if we inherit both the interfaces
 	@Override
 	public void testMethodSignature1() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 
-	// Test case 3, If method signature differs by method arguments, then we have to
+	// Test case 3, If method signature differs by method arguments + return type, then we have to
 	// override both the methods of both the interfaces, example of method overloading
+	// NB : return type doesn't play any role in method overriding
 	@Override
 	public void testMethodSignature2() {
 		System.out.println("Method overloading without argument");		
@@ -42,8 +42,9 @@ public class ImplementPlainInterface implements PlainInterface, PlainInterfaceTw
 	// Test case 3, If method signature differs by method arguments, then we have to
 	// override both the methods of both the interfaces, example of method overloading
 	@Override
-	public void testMethodSignature2(String name) {
-		System.out.println("Method overloading with argument");							
+	public String testMethodSignature2(String name) {
+		System.out.println("Method overloading with argument");		
+		return name;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class ThreadSix implements Runnable {
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		synchronized (bankAccountBean) {
+		//synchronized (bankAccountBean) {
 			Integer localAmount = bankAccountBean.getAmount();
 			System.out.println("Received amt in ThreadSix : " + localAmount);
 			try {
@@ -36,7 +36,7 @@ public class ThreadSix implements Runnable {
 			bankAccountBean.setAmount(remainingAmount);
 			System.out.println("Withdrawing 200 in ThreadSix : " + bankAccountBean);
 			System.out.println("ThreadSix Ends..................");
-		}
+		//}
 
 	}
 }

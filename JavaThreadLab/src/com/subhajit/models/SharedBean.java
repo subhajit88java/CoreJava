@@ -18,7 +18,7 @@ public class SharedBean {
 
 	@Override
 	public String toString() {
-		return "SharedBean [message=" + message + "]";
+		return "SharedBean [money=" + message + "]";
 	}
 
 }
