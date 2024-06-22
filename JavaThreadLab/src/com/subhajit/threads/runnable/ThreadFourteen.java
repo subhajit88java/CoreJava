@@ -18,7 +18,7 @@ public class ThreadFourteen implements Runnable{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		
-		new UtilityClassOne().objectLevelSynchMethod("ThreadFourteen", synchronizeMonitorTwo);
+		new UtilityClassOne().objectLevelSynchMethodThree("ThreadFourteen", synchronizeMonitorTwo);
 	}
 
 }

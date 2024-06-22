@@ -18,7 +18,7 @@ public class ThreadThirteen implements Runnable{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		
-		new UtilityClassOne().objectLevelSynchMethod("ThreadThirteen", synchronizeMonitorTwo);
+		new UtilityClassOne().objectLevelSynchMethodThree("ThreadThirteen", synchronizeMonitorTwo);
 	}
 
 }

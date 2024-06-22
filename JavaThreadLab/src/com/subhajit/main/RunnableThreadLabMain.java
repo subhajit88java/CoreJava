@@ -10,8 +10,10 @@ import com.subhajit.models.BankAccountBean;
 import com.subhajit.models.SharedBean;
 import com.subhajit.models.SynchronizeMonitorOne;
 import com.subhajit.models.SynchronizeMonitorTwo;
+import com.subhajit.models.UtilityClassForLock;
 import com.subhajit.models.UtilityClassOne;
 import com.subhajit.threads.runnable.ThreadEight;
+import com.subhajit.threads.runnable.ThreadEighteen;
 import com.subhajit.threads.runnable.ThreadEleven;
 import com.subhajit.threads.runnable.ThreadFifteen;
 import com.subhajit.threads.runnable.ThreadFive;
@@ -20,6 +22,7 @@ import com.subhajit.threads.runnable.ThreadFourteen;
 import com.subhajit.threads.runnable.ThreadNine;
 import com.subhajit.threads.runnable.ThreadOne;
 import com.subhajit.threads.runnable.ThreadSeven;
+import com.subhajit.threads.runnable.ThreadSeventeen;
 import com.subhajit.threads.runnable.ThreadSix;
 import com.subhajit.threads.runnable.ThreadSixteen;
 import com.subhajit.threads.runnable.ThreadTen;
@@ -162,9 +165,9 @@ public class RunnableThreadLabMain {
 
 	private static void threadExperimentWithoutPooling() {
 
-		 runThreeThreads();
-		 //runTwoThreadsWithObjectSharing();
-		 runTwoThreadsWithBankAccountObject();
+		// runThreeThreads();
+		 runTwoThreadsWithObjectSharing();
+		 //runTwoThreadsWithBankAccountObject();
 
 	}
 
@@ -199,10 +202,32 @@ public class RunnableThreadLabMain {
 
 		// objectLevelSynchronizationTestOne();
 		// objectLevelSynchronizationTestTwo();
-		 classLevelSynchronizationTestOne();
+		 objectLevelSynchronizationTestThree();
+		// classLevelSynchronizationTestOne();
 		// classLevelSynchronizationTestTwo();
 		// methodLevelSynchronizationTest();
+		//   lockingSharedObjectOne();
 
+	}
+
+	private static void lockingSharedObjectOne() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		UtilityClassForLock utilityClassForLockOne = new UtilityClassForLock();
+		UtilityClassForLock utilityClassForLockTwo = new UtilityClassForLock();
+
+		ThreadSeventeen threadSeventeen = new ThreadSeventeen(utilityClassForLockOne);
+		ThreadEighteen threadEighteen = new ThreadEighteen(utilityClassForLockOne);
+
+		Thread t17 = new Thread(threadSeventeen);
+		Thread t18 = new Thread(threadEighteen);
+
+		t17.start();
+		t18.start();
+
+		System.out.println("Main Thread Ends..................");
+		
 	}
 
 	private static void classLevelSynchronizationTestOne() {
@@ -298,7 +323,7 @@ public class RunnableThreadLabMain {
 
 
 		ThreadThirteen threadThirteen = new ThreadThirteen(synchronizeMonitorTwo);
-		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorTwo);
+		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorDuplicate);
 
 		Thread t13 = new Thread(threadThirteen);
 		Thread t14 = new Thread(threadFourteen);
@@ -308,6 +333,26 @@ public class RunnableThreadLabMain {
 
 		System.out.println("Main Thread Ends..................");
 
+	}
+	
+	private static void objectLevelSynchronizationTestThree() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+		
+		SynchronizeMonitorTwo synchronizeMonitorTwo = new SynchronizeMonitorTwo();
+		SynchronizeMonitorTwo synchronizeMonitorDuplicate = new SynchronizeMonitorTwo();
+
+
+		ThreadThirteen threadThirteen = new ThreadThirteen(synchronizeMonitorTwo);
+		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorTwo);
+
+		Thread t13 = new Thread(threadThirteen);
+		Thread t14 = new Thread(threadFourteen);
+
+		t13.start();
+		t14.start();
+
+		System.out.println("Main Thread Ends..................");
 	}
 
 	private static void runTwoThreadsWithBankAccountObject() {

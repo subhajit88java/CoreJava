@@ -21,7 +21,7 @@ public class ThreadFour implements Runnable{
 		// Class level synchronization means : keeping the same class as MONITOR in multiple locations/classes, 
 		// until and unless the block of a particular location is completed
 		// no other blocks will get executed by other threads
-		synchronized(SynchronizeMonitorTwo.class) {
+		synchronized(SynchronizeMonitorOne.class) {
 			System.out.println("[synchronized] Received sharedBean in ThreadFour : " + sharedBean);
 			try {
 				for(int i = 1; i<=10; i ++) {
