@@ -10,10 +10,10 @@ import com.subhajit.models.MiniModel;
 public class CollectionsLab {
 
 	public static void main(String[] args) {
-		//synchronizedList(); // need research in depth
-		//singletonList();
-		//unmodifiableList();
-		arraysAsList();
+		synchronizedList(); // need research in depth
+		//singletonList(); // returns an immutable list with a single element where insert/edit/delete are prohibited
+		//unmodifiableList(); // returns an immutable list with multiple elements where insert/edit/delete are prohibited
+		//arraysAsList(); // returns an immutable list with multiple elements where insert/delete are prohibited, edit is allowed
 		//frequency();
 	}
 
@@ -26,18 +26,37 @@ public class CollectionsLab {
 		list.add("B");
 		list.add("B");
 		list.add("C");
-
 		int times = Collections.frequency(list, "A");
 		System.out.println("Times : " + times);
 		
 	}
 
 	private static void arraysAsList() {
-		List<String> list = Arrays.asList("a","b","c","d");
-		System.out.println("list : " + list);
-		list.add("e");
-		System.out.println("list : " + list);
-
+		List<String> arrayAsList = Arrays.asList("a","b","c","d");
+		//list.add("e"); // Will throw UnsupportedOperationException
+		//list.remove(0); // Will throw UnsupportedOperationException
+		//list.set(0, "edit"); // Will work without exception
+		System.out.println("list element : " + arrayAsList.get(0));
+		System.out.println("list : " + arrayAsList);
+		System.out.println("list address : " + System.identityHashCode(arrayAsList));
+		arrayAsList.forEach(elem -> {
+			System.out.println("element : " + elem);
+		});
+		for(String elem : arrayAsList) {
+			System.out.println("element : " + elem);
+		}
+		
+		List<String> list = new ArrayList<>();
+		list.add("A");
+		list.add("B");
+		list.add("C");
+		list.add("D");
+		list.add("E");
+		System.out.println("list address : " + System.identityHashCode(list));
+		
+		List<List<String>> arrayAsList2 = Arrays.asList(list);
+		list.add("Add");
+		System.out.println("arrayAsList2 : " + arrayAsList2);
 	}
 
 	private static void unmodifiableList() {
@@ -47,46 +66,71 @@ public class CollectionsLab {
 		list.add("C");
 		list.add("D");
 		list.add("E");
+		System.out.println("list address : " + System.identityHashCode(list));
 		List<String> unmodifiableList = Collections.unmodifiableList(list);
 		
-		System.out.println("unmodifiableList : " + unmodifiableList);
+		System.out.println("unmodifiableList before : " + unmodifiableList);
 		System.out.println("unmodifiableList address : " + System.identityHashCode(unmodifiableList));
+		System.out.println("unmodifiableList element : " + unmodifiableList.get(1));
 		
-		//unmodifiableList.add("F"); // Will throw UnsupportedOperationException
-		//System.out.println("unmodifiableList : " + unmodifiableList);
-		//System.out.println("unmodifiableList address : " + System.identityHashCode(unmodifiableList));
+		//unmodifiableList.add("Add"); // Will throw UnsupportedOperationException
+		//unmodifiableList.remove(0); // Will throw UnsupportedOperationException
+		//unmodifiableList.set(0, "Edit"); // Will throw UnsupportedOperationException
 		
-		MiniModel miniModel1 = new MiniModel(1,"Value 1");
-		MiniModel miniModel2 = new MiniModel(2,"Value 2");
-		List<MiniModel> testList2 = new ArrayList<MiniModel>();
-		testList2.add(miniModel1);
-		testList2.add(miniModel2);
+		// Though list and unmodifiableList have different references and they are different objects, still if we add/remove/edit an element on list, unmodifiableList will get effected
+		//list.add("Add"); // 
+		//list.remove(0); 
+		//list.set(0, "Edit"); 
+			
+		System.out.println("unmodifiableList after : " + unmodifiableList);
 		
-		List<MiniModel> unmodifiableList2 = Collections.unmodifiableList(testList2);
-		System.out.println("unmodifiableList2 : " + unmodifiableList2);
-		System.out.println("unmodifiableList2 address : " + System.identityHashCode(unmodifiableList2));
-		
-		miniModel1.setName("Value 3");
-		System.out.println("unmodifiableList2 : " + unmodifiableList2);
+		/*
+		 * MiniModel miniModel1 = new MiniModel(1,"Value 1"); MiniModel miniModel2 = new
+		 * MiniModel(2,"Value 2"); List<MiniModel> testList2 = new
+		 * ArrayList<MiniModel>(); testList2.add(miniModel1); testList2.add(miniModel2);
+		 * 
+		 * List<MiniModel> unmodifiableList2 = Collections.unmodifiableList(testList2);
+		 * System.out.println("unmodifiableList2 : " + unmodifiableList2);
+		 * System.out.println("unmodifiableList2 address : " +
+		 * System.identityHashCode(unmodifiableList2));
+		 * 
+		 * miniModel1.setName("Value 3"); System.out.println("unmodifiableList2 : " +
+		 * unmodifiableList2);
+		 */
 		
 	}
 
 	private static void singletonList() {
 		
 		List<String> testList1 = Collections.singletonList("A");
-		testList1.add("B"); // Will throw UnsupportedOperationException
+		//testList1.add("B"); // Will throw UnsupportedOperationException
+		//testList1.remove(0); // Will throw UnsupportedOperationException
+		//testList1.set(0, "B"); // Will throw UnsupportedOperationException
 		System.out.println("testList1 : " + testList1);
+		System.out.println("testList1 element : " + testList1.get(0));
 		System.out.println("testList1 address : " + System.identityHashCode(testList1));
+
+		/*
+		 * MiniModel miniModel = new MiniModel(1, "Value 1"); List<MiniModel> testList2
+		 * = Collections.singletonList(miniModel); System.out.println("testList2 : " +
+		 * testList2); System.out.println("testList2 address : " +
+		 * System.identityHashCode(testList2));
+		 * 
+		 * miniModel.setName("Value 2"); System.out.println("testList2 : " + testList2);
+		 * System.out.println("testList2 address : " +
+		 * System.identityHashCode(testList2));
+		 */
+		List<String> list = new ArrayList<>();
+		list.add("A");
+		list.add("B");
+		list.add("C");
+		list.add("D");
+		list.add("E");
 		
-		MiniModel miniModel = new MiniModel(1,"Value 1");
-		List<MiniModel> testList2 = Collections.singletonList(miniModel);
-		System.out.println("testList2 : " + testList2);
-		System.out.println("testList2 address : " + System.identityHashCode(testList2));
-		
-		miniModel.setName("Value 2");
-		System.out.println("testList2 : " + testList2);
-		System.out.println("testList2 address : " + System.identityHashCode(testList2));
-		
+		List<List<String>> testList3 = Collections.singletonList(list);
+		list.add("Add");
+		System.out.println("testList3 : " + testList3);
+
 	}
 
 	private static void synchronizedList() {

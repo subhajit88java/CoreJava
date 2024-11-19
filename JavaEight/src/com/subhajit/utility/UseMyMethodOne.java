@@ -10,6 +10,11 @@ public class UseMyMethodOne {
 		System.out.println("Hello : " + name);
 	}
 	
+	public String method2() {
+		System.out.println("method2 : ");
+		return null;
+	}
+	
 	public int addM(int a, int b) {
 		return a+b;
 	}

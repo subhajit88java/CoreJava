@@ -9,15 +9,16 @@ import java.util.stream.Stream;
 
 import com.subhajit.model.Student;
 import com.subhajit.model.Teacher;
+import com.subhajit.model.TeacherSalarySorter;
 
 public class StreamAnalysis {
 
 	public static void main(String[] args) {
 		
-		testIntStream();
-		testStreamOperations();
+		//testIntStream();
+		//testStreamOperations();
 		testSortingOverArrayList();
-		testMultiFieldSortingOverArrayList();
+		//testMultiFieldSortingOverArrayList();
 			
 	}
 
@@ -64,7 +65,8 @@ public class StreamAnalysis {
 		// Ascending order sorting using dynamic comparator body
 		// sorted() will take a user-defined anonymous Comparator body
 		// Asc or Desc order will depend on the order of input objects used in comparison
-		System.out.println("Asc Order based on marks : " + teacherStream.sorted((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());}).collect(Collectors.toList()));
+		//System.out.println("Asc Order based on marks[Lambda expression] : " + teacherStream.sorted((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());}).collect(Collectors.toList()));
+		System.out.println("Asc Order based on marks[Method reference] : " + teacherStream.sorted(new TeacherSalarySorter() :: sort).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
@@ -95,10 +97,11 @@ public class StreamAnalysis {
 		// With the help of Comparator.comparing(keyExtractor), we can use dynamic Comparable field provided by the caller class/method 
 		// That dynamic key will be used during comparison(default comparison will be in Asc. order)
 		// No need to implement Comparable Interface here
-		System.out.println("Aesc based on id : " + teacherStream.sorted(Comparator.comparing((Teacher teacher) -> teacher.getId())).collect(Collectors.toList()));
+		//System.out.println("Aesc based on id : " + teacherStream.sorted(Comparator.comparing((Teacher teacher) -> teacher.getId())).collect(Collectors.toList()));
+		System.out.println("Aesc based on id [Method reference] : " + teacherStream.sorted(Comparator.comparing(Teacher :: getId)).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
-		// Descending order sorting using dynamic Comparable field along with the dynamic Comparator body related to that field 
+		// Descending order sorting using dynamic Comparable field along with  the dynamic Comparator body related to that field 
 		// We know that when Comparable interface is implemented, the body definition of compareTo method will be fixed 
 		// i.e the body can't be changed by the caller class/method based on requirement
 		// With the help of Comparator.comparing(keyExtractor, keyComparator), we can use dynamic Comparable field provided by the caller class/method, as well as the Comparator logic associated with that field 
@@ -167,7 +170,7 @@ public class StreamAnalysis {
 		newList  = studentList.stream().distinct().collect(Collectors.toList());
 		System.out.println("SQL 7 : " + newList);
 
-		// Let's practise aggregate functions
+		// Let's Practice aggregate functions
 		// SQL - Select count(*) from T1 where name like 'S%' or marks > 90
 		long count = studentList.stream().filter(student -> student.getName().matches("S(.*)") || student.getMarks() > 90).count();
 		System.out.println("SQL 8 : " + count);

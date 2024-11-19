@@ -2,6 +2,7 @@ package com.subhajit.threads.runnable;
 
 import com.subhajit.models.SynchronizeMonitorTwo;
 import com.subhajit.models.UtilityClassOne;
+import com.subhajit.models.UtilityClassTwo;
 
 public class ThreadFourteen implements Runnable{
 	
@@ -18,7 +19,7 @@ public class ThreadFourteen implements Runnable{
 				" Thread Name : " + Thread.currentThread().getName()
 				);
 		
-		new UtilityClassOne().objectLevelSynchMethodThree("ThreadFourteen", synchronizeMonitorTwo);
+		new UtilityClassTwo().objectLevelSynchMethod("ThreadFourteen", synchronizeMonitorTwo);
 	}
 
 }

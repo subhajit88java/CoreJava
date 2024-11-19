@@ -20,8 +20,8 @@ public class ThreadOne implements Callable<Integer>{
 			}
 			sum = sum + i;
 			// activate the below code to generate exception
-			String s = null;
-			s.length();
+			//String s = null;
+			//s.length();
 		}
 		System.out.println("ThreadOne Ends with sum : " + sum);	
 		return sum;

@@ -35,16 +35,16 @@ public class RunnableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		threadExperimentWithoutPooling();
-		//threadExperimentWithPooling();
+		//threadExperimentWithoutPooling();
+		threadExperimentWithPooling();
 
 	}
 
 	private static void threadExperimentWithPooling() {
 		// singleThreadPool();	
 		// multiThreadPool();	
-		// singleThreadPoolWithException();
-		 multiThreadPoolWithExecutorCompletionService();
+		 singleThreadPoolWithException();
+		// multiThreadPoolWithExecutorCompletionService();
 	}
 
 	private static void singleThreadPool() {
@@ -166,7 +166,7 @@ public class RunnableThreadLabMain {
 	private static void threadExperimentWithoutPooling() {
 
 		// runThreeThreads();
-		 runTwoThreadsWithObjectSharing();
+		// runTwoThreadsWithObjectSharing();
 		 //runTwoThreadsWithBankAccountObject();
 
 	}
@@ -202,11 +202,11 @@ public class RunnableThreadLabMain {
 
 		// objectLevelSynchronizationTestOne();
 		// objectLevelSynchronizationTestTwo();
-		 objectLevelSynchronizationTestThree();
+		// objectLevelSynchronizationTestThree();
 		// classLevelSynchronizationTestOne();
 		// classLevelSynchronizationTestTwo();
 		// methodLevelSynchronizationTest();
-		//   lockingSharedObjectOne();
+		   lockingSharedObjectOne();
 
 	}
 
@@ -218,7 +218,7 @@ public class RunnableThreadLabMain {
 		UtilityClassForLock utilityClassForLockTwo = new UtilityClassForLock();
 
 		ThreadSeventeen threadSeventeen = new ThreadSeventeen(utilityClassForLockOne);
-		ThreadEighteen threadEighteen = new ThreadEighteen(utilityClassForLockOne);
+		ThreadEighteen threadEighteen = new ThreadEighteen(utilityClassForLockTwo);
 
 		Thread t17 = new Thread(threadSeventeen);
 		Thread t18 = new Thread(threadEighteen);
@@ -301,7 +301,7 @@ public class RunnableThreadLabMain {
 		SynchronizeMonitorOne synchronizeMonitorTwo = new SynchronizeMonitorOne();
 
 		ThreadEleven threadEleven = new ThreadEleven(synchronizeMonitorOne);
-		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorOne);
+		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorTwo);
 
 		Thread t11 = new Thread(threadEleven);
 		Thread t12 = new Thread(threadTwelve);
@@ -323,7 +323,7 @@ public class RunnableThreadLabMain {
 
 
 		ThreadThirteen threadThirteen = new ThreadThirteen(synchronizeMonitorTwo);
-		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorDuplicate);
+		ThreadFourteen threadFourteen = new ThreadFourteen(synchronizeMonitorTwo);
 
 		Thread t13 = new Thread(threadThirteen);
 		Thread t14 = new Thread(threadFourteen);
