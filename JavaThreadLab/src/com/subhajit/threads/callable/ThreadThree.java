@@ -10,11 +10,11 @@ public class ThreadThree implements Callable<Integer>{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		int sum = 0;
-		for(int i=0;i<60;i=i+3) {
+		int sum = 300;
+		for(int i=0;i<10;i++) {
 			System.out.println("From ThreadThree : " + i);
 			try {
-				Thread.sleep(500);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

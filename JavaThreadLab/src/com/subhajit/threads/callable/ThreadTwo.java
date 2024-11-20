@@ -10,11 +10,11 @@ public class ThreadTwo implements Callable<Integer>{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		int sum = 0;
-		for(int i=0;i<10;i=i+2) {
+		int sum = 200;
+		for(int i=0;i<10;i++) {
 			System.out.println("From ThreadTwo : " + i);
 			try {
-				Thread.sleep(300);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -10,11 +10,11 @@ public class ThreadOne implements Callable<Integer>{
 				" Thread Id : " + Thread.currentThread().getId() + 
 				" Thread Name : " + Thread.currentThread().getName()
 				);
-		int sum = 0;
-		for(int i=0;i<5;i++) {
+		int sum = 100;
+		for(int i=0;i<10;i++) {
 			System.out.println("From ThreadOne : " + i);
 			try {
-				Thread.sleep(400);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

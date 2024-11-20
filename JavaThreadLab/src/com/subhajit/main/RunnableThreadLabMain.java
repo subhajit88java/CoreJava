@@ -15,6 +15,7 @@ import com.subhajit.models.UtilityClassOne;
 import com.subhajit.threads.runnable.ThreadEight;
 import com.subhajit.threads.runnable.ThreadEighteen;
 import com.subhajit.threads.runnable.ThreadEleven;
+import com.subhajit.threads.runnable.ThreadFactoryOne;
 import com.subhajit.threads.runnable.ThreadFifteen;
 import com.subhajit.threads.runnable.ThreadFive;
 import com.subhajit.threads.runnable.ThreadFour;
@@ -42,9 +43,34 @@ public class RunnableThreadLabMain {
 
 	private static void threadExperimentWithPooling() {
 		// singleThreadPool();	
-		// multiThreadPool();	
-		 singleThreadPoolWithException();
+		 multiThreadPool();	
+		// singleThreadPoolWithException();
 		// multiThreadPoolWithExecutorCompletionService();
+		executorCompletionServiceWithThreadFactory();
+	}
+
+	private static void executorCompletionServiceWithThreadFactory() {
+		
+		Runnable threadOne = new ThreadOne();
+		Runnable threadTwo = new ThreadTwo();
+		Runnable threadEight = new ThreadEight();
+		
+		ThreadFactoryOne threadFactory = new ThreadFactoryOne();
+		
+		ExecutorService executor = Executors.newFixedThreadPool(2, threadFactory);
+		Future one = executor.submit(threadOne);
+		Future two = executor.submit(threadTwo);
+		Future three = executor.submit(threadEight);
+		
+		try {	
+			System.out.println("Rank 1 : " + one.get());
+			System.out.println("Rank 2 : " + two.get());
+			System.out.println("Rank 3 : " + three.get());	
+		} catch (Exception e) {e.printStackTrace();} 
+		
+		System.out.println("Thread count : " + threadFactory.getCount());
+	
+		System.out.println("Main Thread Ends..................");
 	}
 
 	private static void singleThreadPool() {
@@ -168,7 +194,32 @@ public class RunnableThreadLabMain {
 		// runThreeThreads();
 		// runTwoThreadsWithObjectSharing();
 		 //runTwoThreadsWithBankAccountObject();
+		runThreeThreadsWithThreadFactory();
 
+	}
+
+	private static void runThreeThreadsWithThreadFactory() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+
+		Runnable threadOne = new ThreadOne();
+		Runnable threadTwo = new ThreadTwo();
+		Runnable threadEight = new ThreadEight();
+		
+		ThreadFactoryOne threadFactory = new ThreadFactoryOne();
+
+		Thread t1 = threadFactory.newThread(threadOne);
+		Thread t2 = threadFactory.newThread(threadTwo);
+		Thread t8 = threadFactory.newThread(threadEight);
+
+		t1.start();
+		t2.start();
+		t8.start();
+		
+		System.out.println("Thread count : " + threadFactory.getCount());
+
+		System.out.println("Main Thread Ends..................");
+		
 	}
 
 	private static void runThreeThreads() {

@@ -20,28 +20,26 @@ public class CallableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		// threadExperimentWithoutPooling();
-		 threadExperimentWithPooling();
+		 threadExperimentWithoutPooling();
+		//threadExperimentWithPooling();
 
 	}
 
 	private static void threadExperimentWithPooling() {
-		//multiThreadPool();
-		//multiThreadCachedPool();
-		multiThreadPoolWithExecutorCompletionService();
+		// multiThreadPool();
+		// multiThreadCachedPool();
+		// multiThreadPoolWithExecutorCompletionService();
 	}
 
-	// Completion service returns the result from any of the the threads whenever
-	// available
-	// Executor service returns the result when manually asked for
+	// With Executer Completion service the result will be available to the main thread in the order of thread completion 
 	private static void multiThreadPoolWithExecutorCompletionService() {
 		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
 				+ " Thread Name : " + Thread.currentThread().getName());
 
 		List<Callable> callableTasks = new ArrayList<>();
-		callableTasks.add(new ThreadOne());
-		callableTasks.add(new ThreadTwo());
-		callableTasks.add(new ThreadThree());
+		callableTasks.add(new ThreadOne()); // 1st task submission, completion will be after task 2nd and 3rd
+		callableTasks.add(new ThreadTwo()); // 2nd task submission, completion will be after task3rd
+		callableTasks.add(new ThreadThree()); // 3rd task submission, completion will be ahead of task 1st and 2nd
 
 		ExecutorService executor = Executors.newCachedThreadPool();
 		CompletionService completionService = new ExecutorCompletionService<>(executor);
@@ -65,30 +63,30 @@ public class CallableThreadLabMain {
 
 	}
 
+	// With Executer service the result will be available to the main thread in the order of task submission
 	private static void multiThreadCachedPool() {
 		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
 				+ " Thread Name : " + Thread.currentThread().getName());
 
-		Callable threadOne = new ThreadOne();
-		Callable threadTwo = new ThreadTwo();
+		Callable threadOne = new ThreadOne(); 
+		Callable threadTwo = new ThreadTwo();  
 		Callable threadThree = new ThreadThree();
 
-		ExecutorService executor = Executors.newCachedThreadPool();
-		Future futureOne = executor.submit(threadOne);
-		Future futureTwo = executor.submit(threadTwo);
-		Future futureThree = executor.submit(threadThree);
-
+		ExecutorService executor = Executors.newCachedThreadPool(); // If no thread is available in pool then new thread will be created, otherwise any freed thread will be assigned
+		Future futureOne = executor.submit(threadOne); // 1st task submission, completion will be after task 2nd and 3rd
+		Future futureTwo = executor.submit(threadTwo); // 2nd task submission, completion will be after task3rd
+		Future futureThree = executor.submit(threadThree); // 3rd task submission, completion will be ahead of task 1st and 2nd
 		System.out.println("Retrieving the results --->");
 		Integer result1 = 0;
 		Integer result2 = 0;
 		Integer result3 = 0;
 		try {
 			result1 = (Integer) futureOne.get();
-			System.out.println("result1 retrieved............ " + result1);
+			System.out.println("result1 retrieved............ " + result1); // Even if it takes long time for completion , the result will be printed first
 			result2 = (Integer) futureTwo.get();
-			System.out.println("result2 retrieved............ " + result2);
+			System.out.println("result2 retrieved............ " + result2); // This statement will not get executed until task 1 result is fetched and printed
 			result3 = (Integer) futureThree.get();
-			System.out.println("result3 retrieved............ " + result3);
+			System.out.println("result3 retrieved............ " + result3); // This statement will not get executed until task 1 and 2 result is fetched and printed
 		} catch (Exception e) {
 		}
 
@@ -110,7 +108,7 @@ public class CallableThreadLabMain {
 		Callable threadTwo = new ThreadTwo();
 		Callable threadThree = new ThreadThree();
 
-		ExecutorService executor = Executors.newFixedThreadPool(2);
+		ExecutorService executor = Executors.newFixedThreadPool(2); // fixed thread pool will create and contain given no of threads. Until and unless 1 thread gets freed, the 3rd task cant be picked up
 		Future futureOne = executor.submit(threadOne);
 		Future futureTwo = executor.submit(threadTwo);
 		Future futureThree = executor.submit(threadThree);
@@ -176,10 +174,11 @@ public class CallableThreadLabMain {
 		Integer result2 = -1;
 		Integer result3 = -1;
 
-		// If an exception is thrown from any one of the threads, it is only when get() 
-		// will be called on future task instance that same exception will be delegated in
+		// If an exception is thrown from any one of the threads, it is only when get()
+		// will be called on future task instance that same exception will be delegated
+		// in
 		// the main thread.
-		// If we dont handle the exception then the following lines post the get() call 
+		// If we dont handle the exception then the following lines post the get() call
 		// on the future task(throwing exception) will not be executed
 		// If we handle exception, then the other get() calls will execute atleast
 		try {
