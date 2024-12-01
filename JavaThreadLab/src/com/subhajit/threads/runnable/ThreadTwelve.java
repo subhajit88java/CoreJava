@@ -1,13 +1,16 @@
 package com.subhajit.threads.runnable;
 
+import com.subhajit.models.SharedBean;
 import com.subhajit.models.SynchronizeMonitorOne;
 
 public class ThreadTwelve implements Runnable{
 	
 	private SynchronizeMonitorOne synchronizeMonitorOne;
+	private SharedBean sharedBean;
 	
-	public ThreadTwelve(SynchronizeMonitorOne synchronizeMonitorOne) {
+	public ThreadTwelve(SynchronizeMonitorOne synchronizeMonitorOne, SharedBean sharedBean) {
 		this.synchronizeMonitorOne = synchronizeMonitorOne;
+		this.sharedBean = sharedBean;
 	}
 
 	@Override
@@ -26,6 +29,8 @@ public class ThreadTwelve implements Runnable{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println("sharedBean in ThreadTwelve : " + sharedBean);
+			sharedBean.setMessage("ThreadTwelve");
 			System.out.println("[synchronized] block ends in ThreadTwelve!");
 		}
 		System.out.println("ThreadTwelve Ends!");

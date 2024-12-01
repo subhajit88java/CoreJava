@@ -29,9 +29,9 @@ public class ArrayListRLab {
 
 			for (String s : stringList) {
 				System.out.println("Data : " + s);
-				// stringList.add("Concurrent add");
-				 //stringList.set(3, "Concurrent edit");
-				 //stringList.remove(3);
+				// stringList.add("Concurrent add"); // Concurrent mod exception
+				// stringList.set(3, "Concurrent edit"); // no exception
+				//stringList.remove(3); // Concurrent mod exception
 			}
 
 			System.out.println("stringList : " + stringList);
@@ -66,10 +66,10 @@ public class ArrayListRLab {
 
 			for (int count = 0; count < stringList.size(); count++) {
 				System.out.println("Data : " + stringList.get(count));
-				// stringList.add("Concurrent add");
-				// stringList.add(9, "Concurrent add");
-				// stringList.set(3, "Concurrent edit");
-				 stringList.remove(3);
+				// stringList.add("Concurrent add"); // no exception
+				// stringList.add(9, "Concurrent add"); // no exception
+				// stringList.set(3, "Concurrent edit"); // no exception
+				// stringList.remove(3); // no exception
 			}
 
 			System.out.println("stringList : " + stringList);
@@ -107,10 +107,10 @@ public class ArrayListRLab {
 
 				String data = itr.next();
 				System.out.println("Data : " + data);
-				// itr.remove();
-				// stringList.add("Concurrent add");
-				// stringList.set(3, "Concurrent edit");
-				// stringList.remove(3);
+				// itr.remove(); // no exception
+				// stringList.add("Concurrent add"); // Concurrent mod exception
+				// stringList.set(3, "Concurrent edit");  // no exception
+				// stringList.remove(3); // Concurrent mod exception
 			}
 
 			System.out.println("stringList : " + stringList);

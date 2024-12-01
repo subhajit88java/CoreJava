@@ -6,11 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 import com.subhajit.models.MiniModel;
+import com.subhajit.threads.ThreadOne;
+import com.subhajit.threads.ThreadTwo;
 
 public class CollectionsLab {
 
 	public static void main(String[] args) {
-		synchronizedList(); // need research in depth
+		synchronizedList(); // return SynchronizedList where all add/update/delete methods are synchronized using a monitor object, thus thread-safe
 		//singletonList(); // returns an immutable list with a single element where insert/edit/delete are prohibited
 		//unmodifiableList(); // returns an immutable list with multiple elements where insert/edit/delete are prohibited
 		//arraysAsList(); // returns an immutable list with multiple elements where insert/delete are prohibited, edit is allowed
@@ -129,23 +131,32 @@ public class CollectionsLab {
 		
 		List<List<String>> testList3 = Collections.singletonList(list);
 		list.add("Add");
-		System.out.println("testList3 : " + testList3);
+		System.out.println("testList3 : " + testList3); // The added value will be reflected
 
 	}
 
 	private static void synchronizedList() {
-		List<String> list = new ArrayList<>();
-		list.add("A");
-		list.add("B");
-		list.add("C");
-		list.add("D");
-		list.add("E");
-		Collections.synchronizedList(list);
 		
-		for(String s : list) {
-			System.out.println("S before edit --> " + s);
-			list.add("F");
-		}
+		List<String> list = new ArrayList<>();
+		//list.add("A");
+		//list.add("B");
+		//list.add("C");
+		//list.add("D");
+		//list.add("E");
+		List<String> list1 = Collections.synchronizedList(list);
+		Runnable r1 = new ThreadOne(list1);
+		Runnable r2 = new ThreadTwo(list1);
+		
+		Thread t1 = new Thread(r1);
+		Thread t2 = new Thread(r2);
+		
+		t1.start();
+		t2.start();
+		
+		/*
+		 * for(String s : list) { System.out.println("S before edit --> " + s);
+		 * list.add("F"); }
+		 */
 		
 	}
 }

@@ -36,8 +36,8 @@ public class RunnableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		//threadExperimentWithoutPooling();
-		threadExperimentWithPooling();
+		threadExperimentWithoutPooling();
+		//threadExperimentWithPooling();
 
 	}
 
@@ -192,9 +192,9 @@ public class RunnableThreadLabMain {
 	private static void threadExperimentWithoutPooling() {
 
 		// runThreeThreads();
-		// runTwoThreadsWithObjectSharing();
+		 runTwoThreadsWithObjectSharing();
 		 //runTwoThreadsWithBankAccountObject();
-		runThreeThreadsWithThreadFactory();
+		//runThreeThreadsWithThreadFactory();
 
 	}
 
@@ -251,13 +251,13 @@ public class RunnableThreadLabMain {
 
 	private static void runTwoThreadsWithObjectSharing() {
 
-		// objectLevelSynchronizationTestOne();
+		 objectLevelSynchronizationTestOne();
 		// objectLevelSynchronizationTestTwo();
 		// objectLevelSynchronizationTestThree();
 		// classLevelSynchronizationTestOne();
 		// classLevelSynchronizationTestTwo();
 		// methodLevelSynchronizationTest();
-		   lockingSharedObjectOne();
+		 //  lockingSharedObjectOne();
 
 	}
 
@@ -350,9 +350,11 @@ public class RunnableThreadLabMain {
 
 		SynchronizeMonitorOne synchronizeMonitorOne = new SynchronizeMonitorOne();
 		SynchronizeMonitorOne synchronizeMonitorTwo = new SynchronizeMonitorOne();
+		
+		SharedBean sharedBean = new SharedBean("main");
 
-		ThreadEleven threadEleven = new ThreadEleven(synchronizeMonitorOne);
-		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorTwo);
+		ThreadEleven threadEleven = new ThreadEleven(synchronizeMonitorOne, sharedBean);
+		ThreadTwelve threadTwelve = new ThreadTwelve(synchronizeMonitorOne, sharedBean);
 
 		Thread t11 = new Thread(threadEleven);
 		Thread t12 = new Thread(threadTwelve);

@@ -134,13 +134,13 @@ public class HashMapLabMain {
 		
 		for (Integer key : keySet) {
 			System.out.println("Map data : " + testMap.get(key));
-			//testMap.put(5, "New Value");
-			//testMap.put(4, "Edited value");
-			//testMap.replace(4, "Edited value");
-			//testMap.remove(4);
+			//testMap.put(5, "New Value"); // Concurrent mod exception, new key addition
+			//testMap.put(4, "Edited value"); // no exception, existing key overriding
+			//testMap.replace(4, "Edited value"); // no exception
+			//testMap.remove(4); // Concurrent mod exception
 		}
 		System.out.println("testMap : " + testMap);
-
+		
 		Set<Map.Entry<Integer, String>> keyValuePair = testMap.entrySet();
 		System.out.println("keyValuePair : " + keyValuePair);
 

@@ -17,10 +17,10 @@ public class ArrayListLabMain {
 		//testCreate();
 		//testUpdate();
 		//testDelete();
-		testRead();
+		// testRead();
 		// testOtherMethods();
 		// testStream();
-		// testThread();
+		 testThread();
 	}
 
 	private static void testCreate() {
@@ -78,12 +78,12 @@ public class ArrayListLabMain {
 
 		// [1] - Using ForEach cum implicit iterator loop, adding/updating/removing elements during iteration
 		ArrayListRLab.read1();
-
+		
 		// [2] - Using simple for loop, adding/updating/removing elements during iteration
 		ArrayListRLab.read2();
 
 		// [3] - Using iterator, adding/updating/removing elements during iteration
-		ArrayListRLab.read3();
+		ArrayListRLab.read3();	
 
 		// [4] - Using iterator's forEachRemaining, adding/updating/removing elements during iteration
 		ArrayListRLab.read4();
