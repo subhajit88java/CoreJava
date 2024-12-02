@@ -69,22 +69,22 @@ public class Employee implements Cloneable {
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		// for shallow cloning
-		//return super.clone();
+		return super.clone();
 		
 		// for deep cloning
 		
-		  Employee emp = (Employee) super.clone(); 
-		  emp.setId(Integer.valueOf(this.id));
+		  //Employee emp = (Employee) super.clone(); 
+		  //emp.setId(Integer.valueOf(this.id));
 		  // if integer value ranges between -128 and 127 then Integer.valueOf() will
 		  //not create any new Integer object, it will return the existing integer
 		  //address 
-		  emp.setSalary(Long.valueOf(this.salary)); 
-		  emp.setName(new String(this.name)); 
-		  emp.setSkills(new ArrayList<String>(this.skills));
-		  EmployeeAddress employeeAddress = new EmployeeAddress();
-		  employeeAddress.setAddress(new String(this.employeeAddress.getAddress()));
-		  emp.setEmployeeAddress(employeeAddress); 
-		  return emp;	 
+		  //emp.setSalary(Long.valueOf(this.salary)); 
+		  //emp.setName(new String(this.name)); 
+		  //emp.setSkills(new ArrayList<String>(this.skills));
+		  //EmployeeAddress employeeAddress = new EmployeeAddress();
+		  //employeeAddress.setAddress(new String(this.employeeAddress.getAddress()));
+		  //emp.setEmployeeAddress(employeeAddress); 
+		  //return emp;	 
 		
 	}
 }

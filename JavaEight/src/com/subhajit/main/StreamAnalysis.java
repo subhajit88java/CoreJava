@@ -66,28 +66,28 @@ public class StreamAnalysis {
 		// sorted() will take a user-defined anonymous Comparator body
 		// Asc or Desc order will depend on the order of input objects used in comparison
 		//System.out.println("Asc Order based on marks[Lambda expression] : " + teacherStream.sorted((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());}).collect(Collectors.toList()));
-		System.out.println("Asc Order based on marks[Method reference] : " + teacherStream.sorted(new TeacherSalarySorter() :: sort).collect(Collectors.toList()));
+		System.out.println("Asc Order based on salary[Method reference] : " + teacherStream.sorted(new TeacherSalarySorter() :: sort).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
 		// Descending order sorting using dynamic comparator body
 		// sorted() will take a user-defined anonymous Comparator body
 		// Asc or Desc order will depend on the order of input objects used in comparison
-		System.out.println("Desc Order based on marks : " + teacherStream.sorted((teacher1, teacher2) -> {return teacher2.getSalary().compareTo(teacher1.getSalary());}).collect(Collectors.toList()));
+		System.out.println("Desc Order based on salary : " + teacherStream.sorted((teacher1, teacher2) -> {return teacher2.getSalary().compareTo(teacher1.getSalary());}).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
 		// Ascending order sorting using fixed Comparable logic
 		// Comparable must be implemented by the object in comparison while calling Comparator.naturalOrder()
 		// Natural Order means, the sorting will be as per the logic written in CompareTo method after implementing Comparable interface
-		System.out.println("Natural Order based on marks : " + teacherStream.sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
+		//System.out.println("Natural Order based on salary : " + teacherStream.sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
 		// Descending order sorting using fixed Comparable logic
 		// Comparable must be implemented by the object in comparison while calling Comparator.reverseOrder()
 		// Reverse Order means, the sorting will be exactly the reverse of the logic written in CompareTo method after implementing Comparable interface
-		System.out.println("Reverse Order based on marks : " + teacherStream.sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
+		//System.out.println("Reverse Order based on salary : " + teacherStream.sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		teacherStream = teacherList.stream();
@@ -124,9 +124,19 @@ public class StreamAnalysis {
 		teacherList.add(null);
 		
 		teacherStream = teacherList.stream();
-		System.out.println("Null first aesc based on marks : " + teacherStream.sorted(Comparator.nullsFirst((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());})).collect(Collectors.toList()));
+		System.out.println("Null first aesc based on salary : " + teacherStream.sorted(Comparator.nullsFirst((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());})).collect(Collectors.toList()));
+	
 		teacherStream = teacherList.stream();
-		System.out.println("Null last aesc based on marks : " + teacherStream.sorted(Comparator.nullsLast((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());})).collect(Collectors.toList()));
+		System.out.println("Null last aesc based on salary : " + teacherStream.sorted(Comparator.nullsLast((teacher1, teacher2) -> {return teacher1.getSalary().compareTo(teacher2.getSalary());})).collect(Collectors.toList()));
+		
+		teacherList.add(new Teacher(1,"Subhajit",null));
+		teacherStream = teacherList.stream();
+		
+		// Aesc sorting if one of the class level field is null
+		System.out.println("Null first aesc based on salary : " + 
+				teacherStream
+				.sorted(Comparator.nullsFirst(Comparator.comparing(Teacher :: getSalary, Comparator.nullsFirst((Integer salary1, Integer salary2) -> {return salary1.compareTo(salary2);}))))
+		.collect(Collectors.toList()));	
 		
 	}
 

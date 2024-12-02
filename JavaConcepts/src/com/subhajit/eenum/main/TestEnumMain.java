@@ -8,8 +8,8 @@ public class TestEnumMain {
 
 	public static void main(String[] args) {
 		//testEnumOne();
-		//testEnumTwo();
-		testEnumThree();
+		testEnumTwo();
+		//testEnumThree();
 	}	
 
 	private static void testEnumOne() {
