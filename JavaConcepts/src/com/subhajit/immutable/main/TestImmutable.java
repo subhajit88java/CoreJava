@@ -11,8 +11,8 @@ import com.subhajit.immutable.model.BreakImmutableTwo;
 public class TestImmutable {
 
 	public static void main(String[] args) {
-		//breakImmutableOne();
-		breakImmutableTwo();
+		breakImmutableOne();
+		//breakImmutableTwo();
 		//breakImmutableThree();
 		//breakImmutableFour();
 	}

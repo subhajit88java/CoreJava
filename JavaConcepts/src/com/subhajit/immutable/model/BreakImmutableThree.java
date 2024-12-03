@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 // This object can't be regarded as immutable as "listOfString" can be modified after object creation
 public class BreakImmutableThree {
 
-	private Integer integerValue;
-	private String stringValue;
-	private List<String> listOfString;
+	private final Integer integerValue;
+	private final String stringValue;
+	private final List<String> listOfString;
 	
 	public BreakImmutableThree(Integer integerValue, String stringValue, List<String> listOfString) {
 		super();

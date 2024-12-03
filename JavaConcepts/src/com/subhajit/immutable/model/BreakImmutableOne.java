@@ -5,9 +5,9 @@ import java.util.List;
 // This object can't be regarded as immutable as "listOfString" can be modified after object creation
 public class BreakImmutableOne {
 
-	private Integer integerValue;
-	private String stringValue;
-	private List<String> listOfString;
+	private final Integer integerValue;
+	private final String stringValue;
+	private final List<String> listOfString;
 	
 	public BreakImmutableOne(Integer integerValue, String stringValue, List<String> listOfString) {
 		super();
