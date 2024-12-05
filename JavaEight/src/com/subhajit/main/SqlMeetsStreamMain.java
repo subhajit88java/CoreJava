@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 import com.subhajit.model.TeacherSql;
@@ -99,6 +101,37 @@ public class SqlMeetsStreamMain {
 		Map<String, Long> map7 = map6.entrySet().stream().collect(Collectors.toMap(record -> record.getKey(), record -> record.getValue().getMax()));		
 	
 		System.out.println("map7 : " + map7);
+		
+		// SQL query : SELECT * FROM (SELECT TEACHER_ID, TEACHER_NAME, TEACHER_CITY, TEACHER_SALARY, ROW_NUMBER() OVER(ORDER BY TEACHER_SALARY desc) as pos from TEACHER) WHERE pos = 1;
+		// Result : 
+		// 3 SVB kolkata	75000	1
+		TeacherSql teacherWithMaxSal = teacherList
+		.stream()
+		.collect(Collectors
+				.reducing(BinaryOperator
+						.maxBy(Comparator
+								.comparing(TeacherSql :: getTeacherSalary))))
+		.get();
+		System.out.println("teacherWithMaxSal : " + teacherWithMaxSal);
+		
+		// SQL query : SELECT * FROM (SELECT TEACHER_ID, TEACHER_NAME, TEACHER_CITY, TEACHER_SALARY, ROW_NUMBER() OVER(PARTITION BY TEACHER_CITY ORDER BY TEACHER_SALARY desc) as pos from TEACHER) WHERE pos = 1;
+		// Result : 
+		// 6	SG	Asansol	40000	1
+		// 2	JMG	Durgapur	60000	1
+		// 3	SVB	kolkata	75000	1
+		List<Optional<TeacherSql>> teacherListWIthMaxSalPerCity = teacherList
+				.stream()
+				.collect(Collectors
+						.groupingBy(TeacherSql :: getTeacherCity, Collectors
+								.reducing(BinaryOperator
+										.maxBy(Comparator
+												.comparing(TeacherSql :: getTeacherSalary)))))
+		.entrySet()
+		.stream()
+		.collect(Collectors
+				.mapping(record -> record.getValue(), Collectors.toList()));
+		
+		System.out.println("teacherListWIthMaxSalPerCity : " + teacherListWIthMaxSalPerCity);
 		
 	}
 	
