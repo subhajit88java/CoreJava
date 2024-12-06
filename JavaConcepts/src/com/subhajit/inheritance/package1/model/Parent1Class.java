@@ -3,7 +3,8 @@ package com.subhajit.inheritance.package1.model;
 public class Parent1Class {
 
 	private String var1; // cannot be inherited by child class
-	protected String var2; // can be inherited by child class under same package
+	// can be inherited by child class under same/different package
+	protected String var2; 
     // can be inherited by child class under same package
 	// cannot be inherited by child class under different package
 	String var3; 

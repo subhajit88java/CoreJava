@@ -5,10 +5,14 @@ import com.subhajit.inheritance.package1.model.Child2Class;
 import com.subhajit.inheritance.package1.model.Child3Class;
 import com.subhajit.inheritance.package1.model.Child5Class;
 import com.subhajit.inheritance.package1.model.Child6Class;
+import com.subhajit.inheritance.package1.model.ChildOneStaticMethods;
+import com.subhajit.inheritance.package1.model.ChildThreeStaticMethods;
+import com.subhajit.inheritance.package1.model.ChildTwoStaticMethods;
 import com.subhajit.inheritance.package1.model.Parent1Class;
 import com.subhajit.inheritance.package1.model.Parent2Class;
 import com.subhajit.inheritance.package1.model.Parent3Class;
 import com.subhajit.inheritance.package1.model.Parent4Class;
+import com.subhajit.inheritance.package1.model.ParentStaticMethods;
 import com.subhajit.inheritance.package2.model.Child4Class;
 
 public class TestInheritance {
@@ -20,6 +24,40 @@ public class TestInheritance {
 		//method2();
 		//inheritenceWithFinalFields();
 		//inheritenceWithFinalClass();	
+		//inheritenceOfStaticMethodsOne();
+		//inheritenceOfStaticMethodsTwo();
+	}
+
+	private static void inheritenceOfStaticMethodsTwo() {
+		// Parent
+		ParentStaticMethods.method1();	
+		new ParentStaticMethods().method1();
+		
+		// Child1
+		ChildOneStaticMethods.method1();
+		new ChildOneStaticMethods().method1();
+		// method2, method3, method4 not visible
+		
+		// Child1
+		ChildTwoStaticMethods.method1();
+		new ChildTwoStaticMethods().method1();
+		// method2, method3, method4 not visible
+	}
+
+	private static void inheritenceOfStaticMethodsOne() {
+		// parent
+		ParentStaticMethods.method1();
+		// method2, method3, method4 not visible
+		
+		// Child1
+		ChildOneStaticMethods.method1();
+		// method2, method3, method4 not visible
+		
+		//Child2
+		ChildTwoStaticMethods.method1();
+		
+		//Child3
+		ChildThreeStaticMethods.method();
 	}
 
 	private static void inheritenceWithFinalClass() {
