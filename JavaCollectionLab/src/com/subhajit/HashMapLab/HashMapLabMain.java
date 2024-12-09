@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.subhajit.HashMapLab.threads.KeyDeleterThread;
 import com.subhajit.HashMapLab.threads.ReadThread;
 import com.subhajit.HashMapLab.threads.SecondReadThread;
 import com.subhajit.HashMapLab.threads.SecondWriteThread;
 import com.subhajit.HashMapLab.threads.WriteThread;
+import com.subhajit.models.HashModel;
 
 public class HashMapLabMain {
 	public static void main(String[] args) {
@@ -20,7 +22,40 @@ public class HashMapLabMain {
 		//testReadWriteSingleThread();
 		//testReadWriteMultiThread();
 		//testReadReadMultiThread();
-		testWriteWriteMultiThread();
+		//testWriteWriteMultiThread();
+		nullKeyAndValue();
+	}
+
+	private static void nullKeyAndValue() {
+		Map<Integer, String> testMap = new HashMap<>();
+
+		testMap.put(null, null);
+		testMap.put(1, null);
+		testMap.put(2, "X");
+		testMap.put(3, "A");
+		testMap.put(4, "Z");
+
+		System.out.println("testMap : " + testMap);
+		
+		System.out.println("Key 1 and value : " + testMap.containsKey(1) + " - " + testMap.get(1));
+		System.out.println("Key 5 : " + testMap.containsKey(5));
+		System.out.println("Key null : " + testMap.containsKey(null));
+		
+		Runnable keyDeleter = new KeyDeleterThread(testMap);
+
+		Thread delete = new Thread(keyDeleter);
+		
+		if(testMap.containsKey(1)) { // main thread checking presence of key 1
+			System.out.println("key 1 found");
+			delete.start();
+			try {
+				Thread.sleep(5000);
+			}catch(Exception e) {}
+			System.out.println("testMap in main thread " + testMap);
+			System.out.println("Value against key 1 : " + testMap.get(1)); // output null, ambiguity is we shall assume that value is null against key 1 as containsKey cond. passed. Reality is the key itself is removed by another thread
+		}
+
+		
 	}
 
 	private static void testCreate() {
@@ -214,7 +249,7 @@ public class HashMapLabMain {
 
 		System.out.println("testMap in Main thread : " + testMap);
 		
-		Runnable writeThread = new WriteThread(testMap);
+		Runnable writeThread = null;// new WriteThread(testMap);
 		Runnable readThread = new ReadThread(testMap);
 
 		Thread write = new Thread(writeThread);
@@ -279,6 +314,14 @@ public class HashMapLabMain {
 		 * e.printStackTrace(); }
 		 */
 		write2.start();
+		
+		try {
+			write1.join();
+			write2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		
 		System.out.println("Main thread ends : " + testMap);
 		

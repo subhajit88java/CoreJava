@@ -9,6 +9,7 @@ import com.subhajit.HashMapLab.threads.ReadThread;
 import com.subhajit.HashMapLab.threads.SecondReadThread;
 import com.subhajit.HashMapLab.threads.SecondWriteThread;
 import com.subhajit.HashMapLab.threads.WriteThread;
+import com.subhajit.models.HashModel;
 
 // ConcurrentHashMap doesnot allow null key and value unlike HashMap
 public class ConcurrentHashMapLabMain {
@@ -31,36 +32,36 @@ private static void testReadWriteSingleThread() {
 
 		System.out.println("testMap : " + testMap);
 		
-		Set<Integer> keySet = testMap.keySet();
-		System.out.println("keySet : " + keySet);
-		
-		// this type of for uses HashIterator internally
-		//for (Integer key : keySet) {
-			//System.out.println("Map data : " + testMap.get(key));
-			//testMap.put(5, "New Value"); // NO java.util.ConcurrentModificationException
-			//testMap.put(4, "Edited value"); // Edit successful
-			//testMap.replace(4, "Edited value");  // Edit successful
-			//testMap.remove(4); // NO java.util.ConcurrentModificationException
-		//}
+		/*
+		 * Set<Integer> keySet = testMap.keySet(); System.out.println("keySet : " +
+		 * keySet);
+		 * 
+		 * for (Integer key : keySet) { System.out.println("Map data : " +
+		 * testMap.get(key)); testMap.put(5, "New Value"); // NO
+		 * java.util.ConcurrentModificationException testMap.put(4, "Edited value"); //
+		 * Edit successful testMap.replace(4, "Edited value"); // Edit successful
+		 * testMap.remove(4); // NO java.util.ConcurrentModificationException }
+		 */
 		
 		Set<Map.Entry<Integer, String>> keyValuePair = testMap.entrySet();
 		System.out.println("keyValuePair : " + keyValuePair);
 
 		// this type of for uses HashIterator internally
-		//for (Map.Entry<Integer, String> keyValue : testMap.entrySet()) {
-			//System.out.println("Map Data : " + keyValue.getKey() + " - " + keyValue.getValue());
-			//testMap.put(5, "New Value"); //  java.util.ConcurrentModificationException
-			//testMap.put(4, "Edited value"); // Edit successful
-			//testMap.replace(4, "Edited value");  // Edit successful
-			//testMap.remove(4); //  java.util.ConcurrentModificationException
-		//}
+		/*
+		 * for (Map.Entry<Integer, String> keyValue : testMap.entrySet()) {
+		 * System.out.println("Map Data : " + keyValue.getKey() + " - " +
+		 * keyValue.getValue()); testMap.put(5, "New Value1"); // NO
+		 * java.util.ConcurrentModificationException testMap.put(4, "Edited value"); //
+		 * Edit successful testMap.replace(4, "Edited value"); // Edit successful
+		 * testMap.remove(4); // NO java.util.ConcurrentModificationException }
+		 */
 		
 		testMap.forEach((key, value) -> {
 			System.out.println("Map Data : " + key + " - " + value);
-			//testMap.put(5, "New Value"); //  java.util.ConcurrentModificationException
-			//testMap.put(4, "Edited value"); // Edit successful
-			//testMap.replace(4, "Edited value");  // Edit successful
-			//testMap.remove(4); //  java.util.ConcurrentModificationException
+			testMap.put(5, "New Value"); //  NO java.util.ConcurrentModificationException
+			testMap.put(4, "Edited value"); // Edit successful
+			testMap.replace(4, "Edited value");  // Edit successful
+			testMap.remove(4); //  NO java.util.ConcurrentModificationException
 		});
 		
 	}
@@ -75,7 +76,7 @@ private static void testReadWriteSingleThread() {
 
 		System.out.println("testMap in Main thread : " + testMap);
 		
-		Runnable writeThread = new WriteThread(testMap);
+		Runnable writeThread = null;//new WriteThread(testMap);
 		Runnable readThread = new ReadThread(testMap);
 
 		Thread write = new Thread(writeThread);
@@ -121,7 +122,7 @@ private static void testReadWriteSingleThread() {
 	}
 	
 	private static void testWriteWriteMultiThread() {
-		Map<Integer, String> testMap = new ConcurrentHashMap<>();
+		Map<HashModel, String> testMap = new ConcurrentHashMap<>();
 
 		System.out.println("testMap in Main thread : " + testMap);
 		
@@ -137,6 +138,14 @@ private static void testReadWriteSingleThread() {
 		 * e.printStackTrace(); }
 		 */
 		write2.start();
+		
+		try {
+			write1.join();
+			write2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		
 		System.out.println("Main thread ends : " + testMap);
 		

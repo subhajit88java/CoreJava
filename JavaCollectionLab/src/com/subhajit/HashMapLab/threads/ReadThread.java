@@ -12,18 +12,29 @@ public class ReadThread implements Runnable{
 	}
 
 	// read process 1
-	/*
-	 * @Override public void run() {
-	 * System.out.println("ReadThread Starts.................." + " Thread Id : " +
-	 * Thread.currentThread().getId() + " Thread Name : " +
-	 * Thread.currentThread().getName()); for (int i = 1; i < 15; i++) {
-	 * System.out.println("testMap in ReadThread : " + testMap); try {
-	 * Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
-	 * } System.out.println("ReadThread Ends.................."); }
-	 */
-	
-	
+
+	@Override
+	public void run() {
+		System.out.println("ReadThread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+		for (int i = 1; i < 15; i++) {
+			// Will throw ConcurrentModificationException. For each iteration of the for
+			// loop a
+			// new HashIterator is getting created. If after creation of HashIterator,
+			// the other thread modifies the HashMap structure then the exception will
+			// happen.
+			System.out.println("testMap in ReadThread : " + testMap);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("ReadThread Ends..................");
+	}
+
 	// read process 2
+
 	/*
 	 * @Override public void run() {
 	 * System.out.println("ReadThread Starts.................." + " Thread Id : " +
@@ -31,43 +42,38 @@ public class ReadThread implements Runnable{
 	 * Thread.currentThread().getName());
 	 * 
 	 * // forEach method execution : When forEach starts executing, the existing //
-	 * hashmap nodes are referenced by temporary variable and iterated // Upon //
-	 * completion of the iteration if it is found that the hashmap structure has //
-	 * been changed then concurrent-modification exception is thrown try {
+	 * hashmap nodes are referenced by temporary variable and iterated // Upon
+	 * completion of the iteration if it is found that the hashmap structure // has
+	 * // been changed then concurrent-modification exception is thrown try {
 	 * testMap.forEach((key, value) -> { System.out.println("Map Data : " + key +
 	 * " - " + value); try { Thread.sleep(2000); } catch (InterruptedException e) {
 	 * e.printStackTrace(); }
 	 * 
-	 * }); } catch (Exception e) { System.out.println("ReadThread terminated!!"); }
+	 * }); } catch (Exception e) { e.printStackTrace();
+	 * //System.out.println("ReadThread terminated!!"); }
 	 * 
 	 * System.out.println("ReadThread Ends.................."); }
 	 */
-	
+
 	// read process 3
 
-	@Override
-	public void run() {
-		System.out.println("ReadThread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
-				+ " Thread Name : " + Thread.currentThread().getName());
-
-		Set<Map.Entry<Integer, String>> keyValuePair = testMap.entrySet();
-		System.out.println("keyValuePair : " + keyValuePair);
-
-		try {
-			for (Map.Entry<Integer, String> keyValue : testMap.entrySet()) {
-				System.out.println("Map Data : " + keyValue.getKey() + " - " + keyValue.getValue());
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("ReadThread terminated!!");
-		}
-
-		System.out.println("ReadThread Ends..................");
-	}
+	/*
+	 * @Override public void run() {
+	 * System.out.println("ReadThread Starts.................." + " Thread Id : " +
+	 * Thread.currentThread().getId() + " Thread Name : " +
+	 * Thread.currentThread().getName());
+	 * 
+	 * Set<Map.Entry<Integer, String>> keyValuePair = testMap.entrySet();
+	 * System.out.println("keyValuePair : " + keyValuePair);
+	 * 
+	 * try { for (Map.Entry<Integer, String> keyValue : testMap.entrySet()) {
+	 * System.out.println("Map Data : " + keyValue.getKey() + " - " +
+	 * keyValue.getValue()); try { Thread.sleep(2000); } catch (InterruptedException
+	 * e) { e.printStackTrace(); } } } catch (Exception e) {
+	 * System.out.println("ReadThread terminated!!"); }
+	 * 
+	 * System.out.println("ReadThread Ends.................."); }
+	 */
 
 }
 

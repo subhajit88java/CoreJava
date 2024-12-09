@@ -7,7 +7,13 @@ public class TestStaticVarMemory {
 		try {
 			Class.forName("com.subhajit.jvm.model.StaticTestModelOne");
 			Class.forName("com.subhajit.jvm.model.StaticTestModelTwo");
-			String var = "Subhajit";
+			/*
+			 * String var = "Subhajit"; System.out.println("Main var : " +
+			 * System.identityHashCode(var)); InstanceTestModelOne instanceTestModelOne =
+			 * new InstanceTestModelOne(); instanceTestModelOne.method();
+			 */
+			
+			Integer var = 1000;
 			System.out.println("Main var : " + System.identityHashCode(var));
 			InstanceTestModelOne instanceTestModelOne = new InstanceTestModelOne();
 			instanceTestModelOne.method();

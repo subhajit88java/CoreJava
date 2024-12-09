@@ -12,42 +12,43 @@ public class SecondReadThread implements Runnable{
 	}
 
 	// read process 1
-	/*
-	 * @Override public void run() {
-	 * System.out.println("SecondReadThread Starts.................." +
-	 * " Thread Id : " + Thread.currentThread().getId() + " Thread Name : " +
-	 * Thread.currentThread().getName()); for (int i = 1; i < 15; i++) {
-	 * System.out.println("testMap in SecondReadThread : " + testMap); try {
-	 * Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
-	 * } System.out.println("SecondReadThread Ends.................."); }
-	 */
-	
-	
+
+	@Override
+	public void run() {
+		System.out.println("SecondReadThread Starts.................." + " Thread Id : "
+				+ Thread.currentThread().getId() + " Thread Name : " + Thread.currentThread().getName());
+		for (int i = 1; i < 15; i++) {
+			System.out.println("testMap in SecondReadThread : " + testMap);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("SecondReadThread Ends..................");
+	}
+
 	  // read process 2
 	  
-		@Override
-		public void run() {
-			System.out.println("SecondReadThread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
-					+ " Thread Name : " + Thread.currentThread().getName());
-
-			// forEach method execution : When forEach starts executing, the existing hashmap nodes are referenced by temporary variable and iterated 
-			// Upon completion of the iteration if it is found that the hashmap structure has been changed then concurrent-modification exception is thrown
-			try {
-				testMap.forEach((key, value) -> {
-					System.out.println("Map Data : " + key + " - " + value);
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-				});
-			} catch (Exception e) {
-				System.out.println("SecondReadThread terminated!!");
-			}
-
-			System.out.println("SecondReadThread Ends..................");
-		}
+		/*
+		 * @Override public void run() {
+		 * System.out.println("SecondReadThread Starts.................." +
+		 * " Thread Id : " + Thread.currentThread().getId() + " Thread Name : " +
+		 * Thread.currentThread().getName());
+		 * 
+		 * // forEach method execution : When forEach starts executing, the existing
+		 * hashmap nodes are referenced by temporary variable and iterated // Upon
+		 * completion of the iteration if it is found that the hashmap structure has
+		 * been changed then concurrent-modification exception is thrown try {
+		 * testMap.forEach((key, value) -> { System.out.println("Map Data : " + key +
+		 * " - " + value); try { Thread.sleep(2000); } catch (InterruptedException e) {
+		 * e.printStackTrace(); }
+		 * 
+		 * }); } catch (Exception e) {
+		 * System.out.println("SecondReadThread terminated!!"); }
+		 * 
+		 * System.out.println("SecondReadThread Ends.................."); }
+		 */
 	 
 	
 	// read process 3
