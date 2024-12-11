@@ -31,9 +31,14 @@ public class TestInheritance {
 		//inheritenceWithFinalFields();
 		//inheritenceWithFinalClass();	
 		//inheritenceOfStaticMethodsOne();
-		inheritenceOfStaticMethodsTwo();
+		//inheritenceOfStaticMethodsTwo();
 		//method3();
 		//instanceVarOverriding();
+		inheritenceWithFinalMethods();
+	}
+
+	private static void inheritenceWithFinalMethods() {
+		
 	}
 
 	private static void instanceVarOverriding() {
