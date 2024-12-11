@@ -17,5 +17,9 @@ public class ParentStaticMethods {
 	static void method4() {
 		System.out.println("PARENT || default static void method4");
 	}
+	
+	public static void callByObject() {
+		System.out.println("PARENT version");
+	}
 
 }

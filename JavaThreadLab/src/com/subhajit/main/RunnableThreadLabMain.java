@@ -190,12 +190,24 @@ public class RunnableThreadLabMain {
 	}
 
 	private static void threadExperimentWithoutPooling() {
-
+		
+		threadRunVsStart();
 		// runThreeThreads();
-		 runTwoThreadsWithObjectSharing();
+		// runTwoThreadsWithObjectSharing();
 		 //runTwoThreadsWithBankAccountObject();
 		//runThreeThreadsWithThreadFactory();
 
+	}
+
+	private static void threadRunVsStart() {
+		System.out.println("Main Thread Starts.................." + " Thread Id : " + Thread.currentThread().getId()
+				+ " Thread Name : " + Thread.currentThread().getName());
+		Runnable threadOne = new ThreadOne();
+		//threadOne.run(); // will run as a normal method call on the shoulder of main thread
+		Thread t1 = new Thread(threadOne);
+		//t1.run(); // will run as a normal method call on the shoulder of main thread
+		t1.start(); // will run as a separate thread
+		System.out.println("Main Thread Ends..................");
 	}
 
 	private static void runThreeThreadsWithThreadFactory() {

@@ -5,13 +5,19 @@ import com.subhajit.inheritance.package1.model.Child2Class;
 import com.subhajit.inheritance.package1.model.Child3Class;
 import com.subhajit.inheritance.package1.model.Child5Class;
 import com.subhajit.inheritance.package1.model.Child6Class;
+import com.subhajit.inheritance.package1.model.ChildInstanceVarOne;
+import com.subhajit.inheritance.package1.model.ChildInstanceVarThree;
+import com.subhajit.inheritance.package1.model.ChildInstanceVarTwo;
 import com.subhajit.inheritance.package1.model.ChildOneStaticMethods;
 import com.subhajit.inheritance.package1.model.ChildThreeStaticMethods;
 import com.subhajit.inheritance.package1.model.ChildTwoStaticMethods;
+import com.subhajit.inheritance.package1.model.LeafChildStaticMethods;
+import com.subhajit.inheritance.package1.model.MiddleChildStaticMethods;
 import com.subhajit.inheritance.package1.model.Parent1Class;
 import com.subhajit.inheritance.package1.model.Parent2Class;
 import com.subhajit.inheritance.package1.model.Parent3Class;
 import com.subhajit.inheritance.package1.model.Parent4Class;
+import com.subhajit.inheritance.package1.model.ParentInstanceVarOne;
 import com.subhajit.inheritance.package1.model.ParentStaticMethods;
 import com.subhajit.inheritance.package2.model.Child4Class;
 
@@ -25,7 +31,30 @@ public class TestInheritance {
 		//inheritenceWithFinalFields();
 		//inheritenceWithFinalClass();	
 		//inheritenceOfStaticMethodsOne();
-		//inheritenceOfStaticMethodsTwo();
+		inheritenceOfStaticMethodsTwo();
+		//method3();
+		//instanceVarOverriding();
+	}
+
+	private static void instanceVarOverriding() {
+		ParentInstanceVarOne parent1 = new ChildInstanceVarOne();
+		parent1.method();
+		
+		ChildInstanceVarOne child1 = new ChildInstanceVarOne();
+		child1.method();
+		
+		ParentInstanceVarOne parent2 = new ChildInstanceVarTwo();
+		parent2.method();
+		
+		ChildInstanceVarTwo child2 = new ChildInstanceVarTwo();
+		child2.method();
+		
+		ParentInstanceVarOne parent3 = new ChildInstanceVarThree();
+		parent3.method();
+		
+		ChildInstanceVarThree child3 = new ChildInstanceVarThree();
+		child3.method();
+		
 	}
 
 	private static void inheritenceOfStaticMethodsTwo() {
@@ -42,6 +71,24 @@ public class TestInheritance {
 		ChildTwoStaticMethods.method1();
 		new ChildTwoStaticMethods().method1();
 		// method2, method3, method4 not visible
+		
+		System.out.println("----------------------------------------------");
+		ParentStaticMethods parent1 = new ParentStaticMethods();
+		parent1.callByObject();
+		
+		ParentStaticMethods parent2 = new MiddleChildStaticMethods();
+		parent2.callByObject();
+		
+		ParentStaticMethods parent3 = new LeafChildStaticMethods();
+		parent3.callByObject();
+		
+		MiddleChildStaticMethods middle1 = new MiddleChildStaticMethods();
+		middle1.callByObject();
+		
+		MiddleChildStaticMethods middle2 = new LeafChildStaticMethods();
+		middle2.callByObject();
+		
+		System.out.println("----------------------------------------------");
 	}
 
 	private static void inheritenceOfStaticMethodsOne() {
@@ -84,6 +131,7 @@ public class TestInheritance {
 		Child3Class cc1 = new Child3Class();
 		System.out.println("cc1 : " + cc1.var1);
 		cc1.getValues();
+		cc1.m();
 	}
 
 	private static void method2() {

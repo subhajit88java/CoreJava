@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 
 import com.subhajit.jvm.model.ChildTwo;
+import com.subhajit.jvm.model.InstanceBlockModel;
 import com.subhajit.jvm.model.NoClassDefFoundModel;
+import com.subhajit.jvm.model.StaticBlockModel;
 import com.subhajit.jvm.model.Subhajit;
 
 
@@ -16,13 +18,27 @@ public class TestClassLoading {
 		//classLoaderTypes();
 		//generateClassNotFoundException();
 		//generateClassDefNotFoundError();
-		testSameClassFromDiffJars();
+		//testSameClassFromDiffJars();
+		//staticBlockTest();
+		instanceBlockTest();
 		
 		System.exit(1);
 		//ClassLoader cl = ClassLoader.getPlatformClassLoader();
 		//Class c = cl.loadClass("java.lang.String");
 		//System.out.println("See : " + c.getClassLoader());
  }
+
+	private static void instanceBlockTest() {
+		new InstanceBlockModel();
+	}
+
+	private static void staticBlockTest() {
+		//try {
+			//Class.forName("com.subhajit.jvm.model.StaticBlockModel");
+			StaticBlockModel.m();
+		//} catch (ClassNotFoundException e) {
+		//}
+	}
 
 	private static void testSameClassFromDiffJars() {
 		//Test test = new Test();
