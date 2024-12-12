@@ -5,6 +5,9 @@ import com.subhajit.inheritance.package1.model.Child2Class;
 import com.subhajit.inheritance.package1.model.Child3Class;
 import com.subhajit.inheritance.package1.model.Child5Class;
 import com.subhajit.inheritance.package1.model.Child6Class;
+import com.subhajit.inheritance.package1.model.ChildInstanceFinalMethod;
+import com.subhajit.inheritance.package1.model.ChildInstanceFinalMethodOne;
+import com.subhajit.inheritance.package1.model.ChildInstanceMethod;
 import com.subhajit.inheritance.package1.model.ChildInstanceVarOne;
 import com.subhajit.inheritance.package1.model.ChildInstanceVarThree;
 import com.subhajit.inheritance.package1.model.ChildInstanceVarTwo;
@@ -17,7 +20,10 @@ import com.subhajit.inheritance.package1.model.Parent1Class;
 import com.subhajit.inheritance.package1.model.Parent2Class;
 import com.subhajit.inheritance.package1.model.Parent3Class;
 import com.subhajit.inheritance.package1.model.Parent4Class;
+import com.subhajit.inheritance.package1.model.ParentInstanceFinalMethod;
+import com.subhajit.inheritance.package1.model.ParentInstanceMethod;
 import com.subhajit.inheritance.package1.model.ParentInstanceVarOne;
+import com.subhajit.inheritance.package1.model.ParentStaticFinalMethod;
 import com.subhajit.inheritance.package1.model.ParentStaticMethods;
 import com.subhajit.inheritance.package2.model.Child4Class;
 
@@ -27,18 +33,36 @@ public class TestInheritance {
 		
 		//inheritenceWithinSamePackage();
 		//inheritenceWithinDifferentPackage();
+		
 		//method2();
+		
 		//inheritenceWithFinalFields();
 		//inheritenceWithFinalClass();	
+		//inheritenceOfFinalInstanceMethods();
+		
 		//inheritenceOfStaticMethodsOne();
 		//inheritenceOfStaticMethodsTwo();
+		
+		inheritenceOfStaticFinalMethods();
+		
 		//method3();
-		//instanceVarOverriding();
-		inheritenceWithFinalMethods();
+		
+		//instanceVarOverriding();		
+		//inheritenceOfInstanceMethods();
 	}
 
-	private static void inheritenceWithFinalMethods() {
-		
+	private static void inheritenceOfStaticFinalMethods() {
+		ParentStaticFinalMethod parentStaticFinalMethod;
+	}
+
+	private static void inheritenceOfInstanceMethods() {
+		ParentInstanceMethod parentInstanceMethod = new ChildInstanceMethod();
+		parentInstanceMethod.publicMethod();
+	}
+
+	private static void inheritenceOfFinalInstanceMethods() {
+		ParentInstanceFinalMethod parentInstanceFinalMethod = new ChildInstanceFinalMethodOne();
+		parentInstanceFinalMethod.publicMethod(); // public final method can be accessed via child even if it is not overriden
 	}
 
 	private static void instanceVarOverriding() {
