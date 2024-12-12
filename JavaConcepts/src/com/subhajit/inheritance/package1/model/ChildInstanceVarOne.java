@@ -1,7 +1,7 @@
 package com.subhajit.inheritance.package1.model;
 
 public class ChildInstanceVarOne extends ParentInstanceVarOne{
-	private Integer var = 200;
+	public Integer var = 200;
 	
 	@Override
 	public void method() {

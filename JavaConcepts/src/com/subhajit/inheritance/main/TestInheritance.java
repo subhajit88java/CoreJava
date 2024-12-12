@@ -24,6 +24,7 @@ import com.subhajit.inheritance.package1.model.ParentInstanceFinalMethod;
 import com.subhajit.inheritance.package1.model.ParentInstanceMethod;
 import com.subhajit.inheritance.package1.model.ParentInstanceVarOne;
 import com.subhajit.inheritance.package1.model.ParentStaticFinalMethod;
+import com.subhajit.inheritance.package1.model.ParentStaticInstanceMethod;
 import com.subhajit.inheritance.package1.model.ParentStaticMethods;
 import com.subhajit.inheritance.package2.model.Child4Class;
 
@@ -43,12 +44,17 @@ public class TestInheritance {
 		//inheritenceOfStaticMethodsOne();
 		//inheritenceOfStaticMethodsTwo();
 		
-		inheritenceOfStaticFinalMethods();
+		//inheritenceOfStaticFinalMethods();
 		
 		//method3();
 		
 		//instanceVarOverriding();		
 		//inheritenceOfInstanceMethods();
+		inheritenceOfStaticInstanceMethods();
+	}
+
+	private static void inheritenceOfStaticInstanceMethods() {
+		ParentStaticInstanceMethod parentStaticInstanceMethod;
 	}
 
 	private static void inheritenceOfStaticFinalMethods() {
@@ -65,13 +71,19 @@ public class TestInheritance {
 		parentInstanceFinalMethod.publicMethod(); // public final method can be accessed via child even if it is not overriden
 	}
 
+	// For direct instance var access, even if in runtime the object is of child, still the parent version value will be shown, unlike methods
 	private static void instanceVarOverriding() {
+		ParentInstanceVarOne parent = new ParentInstanceVarOne();
+		System.out.println("1. Direct var access : " + parent.var);
+		
 		ParentInstanceVarOne parent1 = new ChildInstanceVarOne();
 		parent1.method();
-		
+		System.out.println("2. Direct var access : " + parent1.var);
+				
 		ChildInstanceVarOne child1 = new ChildInstanceVarOne();
 		child1.method();
-		
+		System.out.println("3. Direct var access : " + child1.var);
+				
 		ParentInstanceVarOne parent2 = new ChildInstanceVarTwo();
 		parent2.method();
 		
