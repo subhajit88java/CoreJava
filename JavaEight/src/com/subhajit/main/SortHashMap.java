@@ -1,21 +1,129 @@
 package com.subhajit.main;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
+
+import com.subhajit.model.Student;
 
 public class SortHashMap {
 	
 	public static void main(String[] args) {
-		sortMapBasedOnKey();
+		//sortMapBasedOnPrimalKey();
+		//sortMapBasedOnCustomisedKey();
+		sortMapBasedOnPrimalValue();
 	}
 
-	private static void sortMapBasedOnKey() {
+	private static void sortMapBasedOnPrimalValue() {
+		Map<String, String> map = new HashMap();
+		map.put("A", "ZZ");
+		map.put("B", "AA");
+		map.put("C", "YY");
+		map.put("D", "BB");
+		map.put("E", "XX");
+		
+		// Aesc order by converting into entrySet
+		Map<String,String>	sortedMap = map
+				.entrySet()
+				.stream()
+				.sorted((s1,s2) -> {
+					return s1.getValue().compareTo(s2.getValue());
+				})
+				.collect(Collectors
+						.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+				
+		System.out.println("Aesc order based on value : " + sortedMap);
+		
+		// Desc order by converting into entrySet
+		sortedMap = map
+				.entrySet()
+				.stream()
+				.sorted((s1,s2) -> {
+					return s1.getValue().compareTo(s2.getValue());
+				})
+				.collect(Collectors
+						.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+				
+		System.out.println("Aesc order based on value : " + sortedMap);
+				
+	}
+
+	private static void sortMapBasedOnCustomisedKey() {
+		Map<Student, String> map = new HashMap();
+		map.put(new Student(1, "Subhajit", 75), "val1");
+		map.put(new Student(2, "Asim", 90), "val2");
+		map.put(new Student(3, "Suman", 65), "val3");
+		map.put(new Student(4, "Ram", 80), "val4");
+		map.put(new Student(5, "Sourav", 100), "val5");
+		
+		// Aesc order by converting into entrySet		
+		Map<Student, String> sortedMap =  map
+		.entrySet()
+		.stream()
+		.sorted(Comparator.comparing(Entry :: getKey, Comparator.comparing(Student :: getMarks)))
+		.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+	
+		System.out.println("Asc order based on student marks :: " + sortedMap);
+		
+		// Aesc order by converting into entrySet		
+		sortedMap =  map
+				.entrySet()
+				.stream()
+				.sorted(Comparator.comparing(Entry :: getKey, Comparator.comparing(Student :: getMarks).reversed()))
+				.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+			
+				System.out.println("Desc order based on student marks :: " + sortedMap);
+	
+		//map.put(null, "val5");
+		// Aesc order by converting into entrySet		
+		sortedMap =  map
+				.entrySet()
+				.stream()
+				.sorted(Comparator.comparing(Entry :: getKey, Comparator.nullsFirst(Comparator.comparing(Student :: getMarks))))
+				.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+			
+		System.out.println("Asc order based on student marks(null key) :: " + sortedMap);
+		
+		// Desc order by converting into entrySet		
+		sortedMap =  map
+						.entrySet()
+						.stream()
+						.sorted(Comparator.comparing(Entry :: getKey, Comparator.nullsFirst(Comparator.comparing(Student :: getMarks).reversed())))
+						.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+					
+				System.out.println("Asc order based on student marks(null key) :: " + sortedMap);
+		
+		map.put(new Student(5, "NULL-NAME", null), "val5");
+		// Aesc order by converting into entrySet		
+		sortedMap =  map
+						.entrySet()
+						.stream()
+						.sorted(Comparator.comparing(Entry :: getKey, Comparator.comparing(Student :: getMarks, Comparator.nullsFirst(Comparator.naturalOrder()))))
+						.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+					
+		System.out.println("Asc order based on student marks(null) :: " + sortedMap);
+		
+		// Dsc order by converting into entrySet		
+		sortedMap =  map
+								.entrySet()
+								.stream()
+								.sorted(Comparator.comparing(Entry :: getKey, Comparator.comparing(Student :: getMarks, Comparator.nullsFirst(Comparator.reverseOrder()))))
+								.collect(Collectors.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a, LinkedHashMap :: new));
+							
+		System.out.println("Asc order based on student marks(null) :: " + sortedMap);
+		
+	
+	}
+
+	private static void sortMapBasedOnPrimalKey() {
 		Map<String, String> map = new HashMap();
 		map.put("AA", "AA-name");
 		map.put("B", "B-name");
@@ -23,9 +131,50 @@ public class SortHashMap {
 		map.put("C", "C-name");
 		map.put("AAAA", "AAAA-name");
 		
-		// Aesc order
-		Map<String, String> sortedMap1 = new TreeMap(map);
-		System.out.println("Aesc order based on key : " + sortedMap1);
+		// Aesc order with the help of treemap
+		// If any null key is present this process will give nullpointer exception
+		Map<String, String> sortedMap = new TreeMap(map);
+		System.out.println("Aesc order based on key : " + sortedMap);
+		
+		
+		// Aesc order by converting into entrySet
+		sortedMap = map
+		.entrySet()
+		.stream()
+		.sorted((s1,s2) -> {
+			return s1.getKey().compareTo(s2.getKey());
+		})
+		.collect(Collectors
+				.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+		
+		System.out.println("Aesc order based on key : " + sortedMap);
+		
+		// Desc order by converting into entrySet
+		sortedMap = map
+				.entrySet()
+				.stream()
+				.sorted((s1,s2) -> {
+					return s2.getKey().compareTo(s1.getKey());
+				})
+				.collect(Collectors
+						.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+				
+				System.out.println("Desc order based on key : " + sortedMap);
+				
+		// Aesc order by converting into entrySet
+		sortedMap = map
+				.entrySet()
+				.stream()
+				.sorted((s1,s2) -> {
+					return s1.getKey().compareTo(s2.getKey());
+				})
+				.collect(Collectors
+						.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+				
+				System.out.println("Aesc order based on key : " + sortedMap);
+		
+		
+		
 		
 		List<String> keyList = map
 											.keySet()
@@ -39,6 +188,29 @@ public class SortHashMap {
 			sortedMap2.put(s, map.get(s));
 		});
 		System.out.println("Desc order based on key : " + sortedMap2);
+		
+		map.put(null, "null");
+		
+		// Aesc order, will one key as null
+		sortedMap = map
+				.entrySet()
+				.stream()
+				.sorted(Comparator.comparing(Entry :: getKey, Comparator.nullsFirst(Comparator.naturalOrder())))
+				.collect(Collectors
+						.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+				
+		System.out.println("Aesc order based on key(null) : " + sortedMap);
+		
+		// Desc order with the help of treemap, will one key as null
+		sortedMap = map
+						.entrySet()
+						.stream()
+						.sorted(Comparator.comparing(Entry :: getKey, Comparator.nullsFirst(Comparator.reverseOrder())))
+						.collect(Collectors
+								.toMap(Entry :: getKey, Entry :: getValue, (a,b) -> a,() -> new LinkedHashMap<>()));
+						
+		System.out.println("Desc order based on key(null) : " + sortedMap);
+		
 	}
 
 }
