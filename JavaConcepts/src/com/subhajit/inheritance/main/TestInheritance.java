@@ -5,6 +5,7 @@ import com.subhajit.inheritance.package1.model.Child2Class;
 import com.subhajit.inheritance.package1.model.Child3Class;
 import com.subhajit.inheritance.package1.model.Child5Class;
 import com.subhajit.inheritance.package1.model.Child6Class;
+import com.subhajit.inheritance.package1.model.Child7Class;
 import com.subhajit.inheritance.package1.model.ChildInstanceFinalMethod;
 import com.subhajit.inheritance.package1.model.ChildInstanceFinalMethodOne;
 import com.subhajit.inheritance.package1.model.ChildInstanceMethod;
@@ -37,7 +38,7 @@ public class TestInheritance {
 		
 		//method2();
 		
-		//inheritenceWithFinalFields();
+		inheritenceWithFinalFields();
 		//inheritenceWithFinalClass();	
 		//inheritenceOfFinalInstanceMethods();
 		
@@ -50,7 +51,7 @@ public class TestInheritance {
 		
 		//instanceVarOverriding();		
 		//inheritenceOfInstanceMethods();
-		inheritenceOfStaticInstanceMethods();
+		//inheritenceOfStaticInstanceMethods();
 	}
 
 	private static void inheritenceOfStaticInstanceMethods() {
@@ -155,9 +156,20 @@ public class TestInheritance {
 	private static void inheritenceWithFinalFields() {
 		Parent3Class pc1 = new Child5Class();
 		pc1.getValues();
+		System.out.println("--------------------------------");
 		
 		Child5Class cc1 = new Child5Class();
 		cc1.getValues();
+		System.out.println("--------------------------------");
+		
+		Parent3Class pc2 = new Child7Class();
+		pc2.getValues();
+		System.out.println("--------------------------------");
+		
+		Child7Class cc2 = new Child7Class();
+		cc2.getValues();
+		System.out.println("--------------------------------");
+		
 	}
 
 	private static void method3() {
