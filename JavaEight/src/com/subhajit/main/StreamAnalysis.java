@@ -17,11 +17,55 @@ public class StreamAnalysis {
 		
 		//testIntStream();
 		//testStreamOperations();
-		testSortingOverArrayList();
+		//testSortingOverArrayListSingleField();
+		testSortingOverArrayListMultiFields();
 		//testSortingOverHashMap();
 		//testSortingOverHashSet();
 		//testMultiFieldSortingOverArrayList();
 			
+	}
+
+	private static void testSortingOverArrayListMultiFields() {
+		List<Teacher> teacherList = new ArrayList<>();
+		
+		teacherList.add(new Teacher(1,"Subhajit",70000));
+		teacherList.add(new Teacher(2,"Asim",95000));
+		teacherList.add(new Teacher(3,"Suman",70000));
+		teacherList.add(new Teacher(4,"Sourav",70000));
+		teacherList.add(new Teacher(5,"Ram",75000));
+		System.out.println("Main List : " + teacherList);
+		System.out.println("------------------------------------------------------");
+		
+		// Asc sorting by salary and name
+		System.out.println("Asc sorting by salary and name : " + teacherList
+				.stream()
+				.sorted(Comparator
+						.comparing(Teacher :: getSalary)
+						.thenComparing(Teacher :: getName))
+				.collect(Collectors.toList())
+		);
+		System.out.println("------------------------------------------------------");
+		
+		// Desc sorting by salary and name
+		System.out.println("Desc sorting by salary and name : " + teacherList
+				.stream()
+				.sorted(Comparator
+						.comparing(Teacher :: getSalary)
+						.thenComparing(Teacher :: getName)
+						.reversed())
+				.collect(Collectors.toList())
+		);
+		
+		// Asc sorting by salary and desc by name
+		System.out.println("Asc sorting by salary and desc by name  : " + teacherList
+				.stream()
+				.sorted(Comparator
+						.comparing(Teacher :: getSalary)
+						.thenComparing(Teacher :: getName))
+				.collect(Collectors.toList())
+		);
+		System.out.println("------------------------------------------------------");
+				
 	}
 
 	private static void testSortingOverHashSet() {
@@ -60,7 +104,7 @@ public class StreamAnalysis {
 	
 	}
 
-	private static void testSortingOverArrayList() {
+	private static void testSortingOverArrayListSingleField() {
 		
 		List<Teacher> teacherList = new ArrayList<>();
 		
