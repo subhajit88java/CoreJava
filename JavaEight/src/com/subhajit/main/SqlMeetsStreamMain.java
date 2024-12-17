@@ -23,7 +23,7 @@ public class SqlMeetsStreamMain {
 		teacherList.add(new TeacherSql(3, "SVB","kolkata",	75000L));
 		teacherList.add(new TeacherSql(4, "SR",	"Durgapur",	45000L));
 		teacherList.add(new TeacherSql(5, "SB",	"kolkata",	30000L));
-		teacherList.add(new TeacherSql(5, "SG",	"Asansol",	40000L));
+		teacherList.add(new TeacherSql(6, "SG",	"Asansol",	40000L));
 		
 		//System.out.println("Teacher list : " + teacherList);
 		
