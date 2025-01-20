@@ -191,11 +191,11 @@ public class RunnableThreadLabMain {
 
 	private static void threadExperimentWithoutPooling() {
 		
-		threadRunVsStart();
+		//threadRunVsStart();
 		// runThreeThreads();
 		// runTwoThreadsWithObjectSharing();
 		 //runTwoThreadsWithBankAccountObject();
-		//runThreeThreadsWithThreadFactory();
+		runThreeThreadsWithThreadFactory();
 
 	}
 

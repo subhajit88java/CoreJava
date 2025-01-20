@@ -20,15 +20,15 @@ public class CallableThreadLabMain {
 
 	public static void main(String[] args) {
 
-		 threadExperimentWithoutPooling();
-		//threadExperimentWithPooling();
+		// threadExperimentWithoutPooling();
+		threadExperimentWithPooling();
 
 	}
 
 	private static void threadExperimentWithPooling() {
 		// multiThreadPool();
 		// multiThreadCachedPool();
-		// multiThreadPoolWithExecutorCompletionService();
+		 multiThreadPoolWithExecutorCompletionService();
 	}
 
 	// With Executer Completion service the result will be available to the main thread in the order of thread completion 
@@ -174,16 +174,17 @@ public class CallableThreadLabMain {
 		Integer result2 = -1;
 		Integer result3 = -1;
 
+		// The main thread will not get terminated until and unless all the threads finished their executions, if we call .get() on the threads
 		// If an exception is thrown from any one of the threads, it is only when get()
 		// will be called on future task instance that same exception will be delegated
 		// in
 		// the main thread.
 		// If we dont handle the exception then the following lines post the get() call
 		// on the future task(throwing exception) will not be executed
-		// If we handle exception, then the other get() calls will execute atleast
+		// If we handle exception, then the other get() calls will execute atleast, but the main thread will end before completion of the other threads
 		try {
 			System.out.println("Retrieving the results --->");
-			result1 = (Integer) futureTaskOne.get();
+			//result1 = (Integer) futureTaskOne.get();
 			System.out.println("result1 retrieved............ " + result1);
 			result2 = (Integer) futureTaskTwo.get();
 			System.out.println("result2 retrieved............ " + result2);
