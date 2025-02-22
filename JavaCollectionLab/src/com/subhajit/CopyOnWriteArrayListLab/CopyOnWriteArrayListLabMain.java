@@ -67,10 +67,10 @@ public class CopyOnWriteArrayListLabMain {
 	private static void testRead() {
 		
 		// [1] - Using ForEach loop, adding/updating/removing elements during iteration
-		CopyOnWriteArrayListRLab.read1();
+		//CopyOnWriteArrayListRLab.read1();
 
 		// [2] - Using simple for loop, adding/updating/removing elements during iteration
-		CopyOnWriteArrayListRLab.read2();
+		//CopyOnWriteArrayListRLab.read2();
 
 		// [3] - Using iterator, adding/updating/removing elements during iteration
 		CopyOnWriteArrayListRLab.read3();

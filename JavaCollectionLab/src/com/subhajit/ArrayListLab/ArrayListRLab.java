@@ -101,7 +101,7 @@ public class ArrayListRLab {
 			System.out.println("Size : " + stringList.size());
 			System.out.println("stringList : " + stringList);
 
-			Iterator<String> itr = stringList.iterator();
+			Iterator<String> itr = stringList.iterator(); // Wroks on the same arraylist
 
 			while (itr.hasNext()) {
 
@@ -183,6 +183,8 @@ public class ArrayListRLab {
 			System.out.println("Size : " + stringList.size());
 			System.out.println("stringList : " + stringList);
 
+			// Iterator interface only has next(), if list-iterator is referenced by Iterator interface then we shall not get prev(),
+			// instead if we reference by ListIterator, we shall get prev()
 			Iterator<String> litr = stringList.listIterator();
 
 			while (litr.hasNext()) {

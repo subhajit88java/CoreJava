@@ -1,6 +1,6 @@
 package com.subhajit.model;
 
-public class Teacher{// implements Comparable<Teacher>{
+public class Teacher implements Comparable<Teacher>{
 
 	private Integer id;
 	private String name;
@@ -42,9 +42,9 @@ public class Teacher{// implements Comparable<Teacher>{
 		return "\nTeacher [id=" + id + ", name=" + name + ", salary=" + salary + "]";
 	}
 
-	/*
-	 * @Override public int compareTo(Teacher teacher) { return
-	 * this.getSalary().compareTo(teacher.getSalary()); }
-	 */
-	
+	 @Override
+	 public int compareTo(Teacher teacher) {
+		return this.getSalary().compareTo(teacher.getSalary());
+	}
+
 }

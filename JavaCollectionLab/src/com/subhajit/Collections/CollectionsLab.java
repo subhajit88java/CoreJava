@@ -12,11 +12,24 @@ import com.subhajit.threads.ThreadTwo;
 public class CollectionsLab {
 
 	public static void main(String[] args) {
-		synchronizedList(); // return SynchronizedList where all add/update/delete methods are synchronized using a monitor object, thus thread-safe
+		//synchronizedList(); // return SynchronizedList where all add/update/delete methods are synchronized using a monitor object, thus thread-safe
 		//singletonList(); // returns an immutable list with a single element where insert/edit/delete are prohibited
 		//unmodifiableList(); // returns an immutable list with multiple elements where insert/edit/delete are prohibited
-		//arraysAsList(); // returns an immutable list with multiple elements where insert/delete are prohibited, edit is allowed
+		arraysAsList(); // returns an immutable list with multiple elements where insert/delete are prohibited, edit is allowed
 		//frequency();
+		arrayCopy();
+	}
+
+	private static void arrayCopy() {
+		String[] list = new String[]{"A","Z","B","Y","D"};
+		System.out.println("list : " + Arrays.stream(list).toList());
+		System.out.println("list size : " + list.length);
+		System.out.println("list address : " + System.identityHashCode(list));
+
+		String[] listCopy = Arrays.copyOf(list, 20);
+		System.out.println("listCopy : " + Arrays.stream(listCopy).toList());
+		System.out.println("listCopy size : " + listCopy.length);
+		System.out.println("listCopy address : " + System.identityHashCode(listCopy));
 	}
 
 

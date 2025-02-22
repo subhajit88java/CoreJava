@@ -126,8 +126,8 @@ private static void testReadWriteSingleThread() {
 
 		System.out.println("testMap in Main thread : " + testMap);
 		
-		Runnable writeThread = new WriteThread(testMap);
-		Runnable secondWriteThread = new SecondWriteThread(testMap);
+		Runnable writeThread = null;//new WriteThread(testMap);
+		Runnable secondWriteThread = null;//new SecondWriteThread(testMap);
 
 		Thread write1 = new Thread(writeThread);
 		Thread write2 = new Thread(secondWriteThread);

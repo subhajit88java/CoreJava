@@ -17,10 +17,10 @@ public class ArrayListLabMain {
 		//testCreate();
 		//testUpdate();
 		//testDelete();
-		// testRead();
+		 testRead();
 		// testOtherMethods();
 		// testStream();
-		 testThread();
+		// testThread();
 	}
 
 	private static void testCreate() {

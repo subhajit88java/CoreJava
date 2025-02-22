@@ -93,13 +93,13 @@ public class CopyOnWriteArrayListRLab {
 
 			stringList.add("Z");
 			stringList.add("A");
-			stringList.add(null);
+			//stringList.add(null);
 			stringList.add("Y");
 			stringList.add("A");
 			stringList.add("B");
 			stringList.add("X");
 			stringList.add("A");
-			stringList.add(null);
+			//stringList.add(null);
 
 			System.out.println("Size : " + stringList.size());
 			System.out.println("stringList : " + stringList);
@@ -111,7 +111,7 @@ public class CopyOnWriteArrayListRLab {
 
 				String data = itr.next();
 				System.out.println("Data : " + data);
-				// itr.remove();
+				 itr.remove();
 				// stringList.add("Concurrent add");
 				// stringList.set(3, "Concurrent edit");
 				// stringList.remove(3);
@@ -123,6 +123,7 @@ public class CopyOnWriteArrayListRLab {
 			System.out.println("stringList address after complete iteration : " + System.identityHashCode(stringList));
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Exception :: " + e.getMessage());
 		} finally {
 			System.out.println("----------------------------------------------------------------");

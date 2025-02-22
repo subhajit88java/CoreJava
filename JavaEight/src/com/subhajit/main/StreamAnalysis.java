@@ -16,7 +16,7 @@ public class StreamAnalysis {
 	public static void main(String[] args) {
 		
 		//testIntStream();
-		//testStreamOperations();
+		testStreamOperations();
 		//testSortingOverArrayListSingleField();
 		testSortingOverArrayListMultiFields();
 		//testSortingOverHashMap();
@@ -146,7 +146,7 @@ public class StreamAnalysis {
 		// Type 1
 		System.out.println("Reverse Order based on salary : " + teacherList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()));
 		// Type 2
-		System.out.println("Reverse Order based on salary : " + teacherList.stream().sorted(Comparator.naturalOrder().reversed()).collect(Collectors.toList()));	
+		//System.out.println("Reverse Order based on salary : " + teacherList.stream().sorted(Comparator.naturalOrder().reversed()).collect(Collectors.toList()));
 		System.out.println("------------------------------------------------------");
 
 		// Ascending order sorting using dynamic Comparable field, that will be used for Comparison
@@ -172,7 +172,7 @@ public class StreamAnalysis {
 		// Type 2
 		System.out.println("Desc based on salary [lambda expression] : " + teacherList.stream().sorted(Comparator.comparing((Teacher teacher) -> teacher.getSalary()).reversed()).collect(Collectors.toList()));
 		// Type 3
-		System.out.println("Desc based on salary [method reference] : " + teacherStream.sorted(Comparator.comparing(Teacher :: getSalary).reversed()).collect(Collectors.toList()));
+		//System.out.println("Desc based on salary [method reference] : " + teacherStream.sorted(Comparator.comparing(Teacher :: getSalary).reversed()).collect(Collectors.toList()));
 		
 		System.out.println("------------------------------------------------------");
 

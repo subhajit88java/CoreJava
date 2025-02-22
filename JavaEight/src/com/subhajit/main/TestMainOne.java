@@ -2,9 +2,9 @@ package com.subhajit.main;
 
 import com.subhajit.plain.interfaces.PlainInterface;
 
-public class TestMainOne implements PlainInterface{
+public class TestMainOne{// implements PlainInterface{
 
-	@Override
+	//@Override
 	public void getName() {
 		System.out.println("Subhajit from plain interface");
 		
